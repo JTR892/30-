@@ -1,0 +1,109 @@
+% !TeX program = xelatex
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=24mm]{geometry}
+\usepackage{fontspec,xeCJK}
+\setmainfont{lmroman10-regular.otf}[BoldFont=lmroman10-bold.otf,ItalicFont=lmroman10-italic.otf]
+\setCJKmainfont{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]
+\usepackage{amsmath,booktabs,graphicx,tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{url}
+\renewcommand{\abstractname}{摘要占位}
+\renewcommand{\refname}{参考文献}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.3em}
+\sloppy
+\title{有限训练数据下空间注意力对焊缝 X 射线图像\\无监督聚类的影响：一项受控实验研究}
+\author{作者与单位待填写}
+\date{研究骨架 v0.1 \quad 2026年11月22日}
+\begin{document}
+\maketitle
+\begin{abstract}
+\textbf{目的：}检验目标域无标签训练数据规模是否改变空间注意力的聚类收益。
+\textbf{方法占位：}采用相同骨干的配对对照、来源分组划分、固定优化步数和固定无标签聚类校准池。
+\textbf{结果占位：}尚未运行正式实验；本处不得填写推测的指标、显著性或优越性。
+\textbf{结论占位：}依据实际结果填写效应方向、不确定性及适用范围。
+本稿采用通用 article 排版，尚非目标期刊官方模板。
+\end{abstract}
+
+\section{引言}
+焊缝图像监督分类中的注意力效果\cite{wang2025attention}，不能直接证明其对无标签训练后缺陷语义聚类的效果。已有工业异常类型聚类利用局部特征加权汇聚\cite{sohn2023anomaly}，焊缝识别也已有结合自监督任务的工作\cite{liu2023expert}。因此，本研究不以模块组合的首次性为贡献，而以数据规模改变时空间注意力收益的可重复证据为目标。
+
+研究问题为：在固定优化步数、相同预训练来源及固定聚类校准集条件下，空间注意力是否在较少目标域训练数据时产生更大的增益？待检验假设允许正向、零效应及负向结果。
+
+\section{相关工作}
+正文将分别讨论焊缝分类与检测、空间注意力、对比表示学习及工业异常聚类。CBAM\cite{woo2018cbam}、SimCLR\cite{chen2020simclr}与ResNet\cite{he2016resnet}属于既有方法。本研究使用 CBAM 的空间分支，不等同于完整 CBAM。正常图像训练的异常检测\cite{mahvelati2025flow}、监督图块分类\cite{totino2023riawelc}与本题需区分任务和样本单位。DEC\cite{xie2016dec}及DeepCluster\cite{caron2018deepcluster}提供深度聚类背景，但不构成本方案的新算法证据。
+
+\section{数据与评价范围}
+\subsection{来源与审计}
+原始数据目录、可用图像数、标注结构、来源分组与使用许可待审计。任何资料记载数量都不能替代本机扫描结果。整幅图像作为一个聚类观察；同一焊口、底片和重复关系组成的连通分组不得跨分区。
+
+\subsection{标签使用边界}
+目标域缺陷标签不参与表示训练与训练子集选择。ImageNet 监督预训练属于外部监督，必须披露。主外部评价针对预先定义的单缺陷图像子集；多缺陷及未知标注样本单独统计覆盖率，不强行赋成单标签或正常。测试标签在协议冻结后开启。
+
+\section{方法}
+两组共享 ResNet18 骨干和 SimCLR 训练过程。空间分支位于 layer4 后、全局平均池化前：
+\begin{equation}
+M_s(F)=\sigma\!\left(f^{7\times7}([\mathrm{Avg}_c(F);\mathrm{Max}_c(F)])\right),\quad F'=M_s(F)\odot F.
+\end{equation}
+式中池化沿通道维进行。聚类使用投影头之前的全局平均池化表示，并进行 L2 归一化。主实验不使用 PCA；敏感性分析若使用 PCA，只能在校准池拟合。
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[node distance=6mm and 8mm,
+b/.style={draw,rounded corners,align=center,text width=30mm,minimum height=14mm,font=\small},
+a/.style={-{Stealth[length=2mm]},thick}]
+\node[b] (data) {完整图像\\来源分组};
+\node[b,right=of data] (train) {训练组\\嵌套数据规模};
+\node[b,right=of train] (enc) {配对编码器\\有/无空间分支};
+\node[b,right=of enc] (feat) {冻结表示\\GAP + L2};
+\node[b,below=of enc] (cal) {固定无标签校准池\\选择一次 K};
+\node[b,below=of feat] (test) {固定测试组\\仅预测与评价};
+\draw[a] (data)--(train); \draw[a] (train)--(enc); \draw[a] (enc)--(feat);
+\draw[a] (cal)--node[below,font=\scriptsize]{拟合 K-means}(test);
+\draw[a] (feat)--(test);
+\end{tikzpicture}
+\caption{实验流程占位图。用于说明拟定协议，不是实验结果图。测试图像与标签不参与拟合或调参。}
+\end{figure}
+
+\section{实验设计}
+主规模拟定为独立训练组的10\%、50\%、100\%，实际图像数随组大小变化而记录。采用配对随机种子；核心版本为5个种子、2个模型、3个规模，共30次训练，须通过吞吐预算门槛后启用。资源不足时缩减为3个种子共18次，并将结论限定为探索性证据。分辨率、batch size、优化步数、学习率及增强范围由预实验确定，不能事后按测试结果调整。
+
+固定校准池在各编码器下提取特征并拟合 K-means；K 先在同一冻结的初始骨干特征上用无标签规则选择一次，再跨模型固定。最终测试图像仅用最近中心分配。若使用真实类别数设定 K，应另列为已知类别数诊断实验。
+
+\begin{equation}
+\Delta(n)=\mathrm{ARI}_{\mathrm{attention}}(n)-\mathrm{ARI}_{\mathrm{baseline}}(n),\qquad
+C=\Delta(10\%)-\Delta(100\%).
+\end{equation}
+主效应量为 \(C\)，同时报告各规模配对差、NMI、评价覆盖率、种子波动与运行成本。基于独立来源组的重采样只能描述给定已训练模型的测试抽样不确定性；不能替代重训练。非显著不等于等效。
+
+普通梯度累积不自动扩大对比损失中的负样本集合\cite{gao2021gradcache}。如预实验因小 batch 失败，可在正式冻结前整体改用MoCo\cite{he2020moco}，并重新统一所有比较条件。
+
+\section{结果占位}
+\begin{table}[ht]\centering
+\caption{结果表占位；横线表示尚未实验，绝不代表零值。}
+\begin{tabular}{lcccc}
+\toprule
+训练组比例 & Baseline ARI & Attention ARI & 配对差 & 独立组数\\
+\midrule
+10\% & --- & --- & --- & ---\\
+50\% & --- & --- & --- & ---\\
+100\% & --- & --- & --- & ---\\
+\bottomrule
+\end{tabular}
+\end{table}
+结果小节待填写：主效应量、种子明细、组级不确定性、语义/来源混杂分析、失败案例。t-SNE 仅用于辅助展示，不作为有效性证明。
+
+\section{讨论}
+待结合实际证据讨论空间门控对低对比微小缺陷的作用，以及分辨率、来源偏差、多缺陷评价排除和预训练来源对结论的限制。注意力热图不直接等于因果解释。固定步数控制更新次数，不能声称两模型实际计算量完全相等。
+
+\section{结论占位}
+实验尚未完成，不能作出空间注意力有效或无效的实证结论。依据冻结协议所得结果填写。
+
+\section*{可复现性与贡献说明}
+代码、协议版本、随机种子、排除日志和环境版本须随最终稿提供。当前交付为 AI 辅助整理的研究骨架；文献有核验记录，作者需审阅，不能宣称纯人工写作。工业图像与未授权资料不包含在公开仓库。
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
