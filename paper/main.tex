@@ -59,10 +59,10 @@ a/.style={-{Stealth[length=2mm]},thick}]
 \node[b,right=of data] (train) {训练组\\嵌套数据规模};
 \node[b,right=of train] (enc) {配对编码器\\有/无空间分支};
 \node[b,right=of enc] (feat) {冻结表示\\GAP + L2};
-\node[b,below=of enc] (cal) {固定无标签校准池\\选择一次 K};
+\node[b,below=of enc] (cal) {固定无标签校准池\\拟合 K-means};
 \node[b,below=of feat] (test) {固定测试组\\仅预测与评价};
 \draw[a] (data)--(train); \draw[a] (train)--(enc); \draw[a] (enc)--(feat);
-\draw[a] (cal)--node[below,font=\scriptsize]{拟合 K-means}(test);
+\draw[a] (cal)--(test);
 \draw[a] (feat)--(test);
 \end{tikzpicture}
 \caption{实验流程占位图。用于说明拟定协议，不是实验结果图。测试图像与标签不参与拟合或调参。}
