@@ -8,4 +8,8 @@ Literature: 12 adopted records in docs/literature.json, with DOI/arXiv, verifica
 
 Paper: paper/main.tex and references.bib. General article skeleton, not a journal-approved template. Results remain placeholders. Compiled successfully with XeLaTeX and the desktop editor compiler; 4-page PDF. The source includes a placeholder diagram, empty results and 12 bibliography entries.
 
-Next: finish artifact verification, freeze the protocol only after real data and throughput audits, then implement and run the training pipeline. Do not present future steps as completed experiments.
+Kickoff deliverables checked: a 10-page review/report (DOCX and PDF), an 8-sheet workbook with the 12-paper registry and missing-data-aware budget formulas, a compiled 4-page paper skeleton, source archive and detailed local checkpoint. Private industrial statistics and machine paths are retained only in the local delivery bundle.
+
+Six-item status: research charter, repository scaffold, compiled paper skeleton, related-work registry and milestones are delivered. Data/compute availability is only partly confirmed: actual data, annotation/group provenance, use permission and MPS model training remain unverified.
+
+Next: obtain the real data path and provenance, run the audit, test actual model throughput, freeze the protocol, then implement and run the full training pipeline. See MILESTONES.md. Do not present future steps as completed experiments.
