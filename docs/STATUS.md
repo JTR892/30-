@@ -1,15 +1,17 @@
-# Project checkpoint — 2026-11-22
+# 项目状态 · 2026-11-22 · v0.2
 
-Research question and constraints are preserved in AGENTS.md and docs/protocol.md. The industrial dataset path, annotation schema, provenance groups and use permission are pending. This public repository contains no raw industrial files or private machine paths.
+研究主线已经修订为聚类性能、表征几何与工业语义三层问题。数据规模为受控因素；工作题目包含“表征机制分析”，不代表已经发现机制。
 
-Implemented: read-only inventory, environment probe, provenance-group split, nested subsets with fixed calibration/test partitions, draft-protocol gate and six synthetic-fixture tests. Tests passed locally; this is not a model-training result.
+已实现文件审计、环境探测、来源分组、固定校准/测试划分、嵌套子集和最终协议检查。测试使用合成夹具。模型训练、几何指标与语义扰动分析尚未实现或运行，没有真实模型结果。
 
-Literature: 12 adopted records in docs/literature.json, with DOI/arXiv, verification date and access depth. An abstract-only record is explicitly marked; blocked publisher access is recorded rather than called successful. Literature metadata verification is not a guarantee that the research question has no prior work.
+本版更新 AGENTS、README、最终协议/配置、里程碑、论文和文献比较，新增研究任务书、三层分析计划、资源证据表与六项验收。总文献 17 条，核心 12 条；新增 5 条核验深度为原始元数据/摘要。核心 12 条均有 DOI/arXiv；指标补充参考 L17 未核实 DOI/arXiv，使用稳定期刊卷页，绝不补造标识。
 
-Paper: paper/main.tex and references.bib. General article skeleton, not a journal-approved template. Results remain placeholders. Compiled successfully with XeLaTeX and the desktop editor compiler; 4-page PDF. The source includes a placeholder diagram, empty results and 12 bibliography entries.
+原始数据目录、有效数量、图像级标签、来源连通组、许可和位置/形态/采集证据仍待核；真实 MPS 训练和吞吐待测。数据、算力与语义分析可得性只能标为部分确认。
 
-Kickoff deliverables checked: a 10-page review/report (DOCX and PDF), an 8-sheet workbook with the 12-paper registry and missing-data-aware budget formulas, a compiled 4-page paper skeleton, source archive and detailed local checkpoint. Private industrial statistics and machine paths are retained only in the local delivery bundle.
+配置为 0.2-draft。主效应改为三个规模 ARI 配对差等权平均，同时完整报告各规模；原规模交互改为次要比较。几何/语义资格、参数和规范哈希在测试评价前冻结，最终检查器加入这些门槛。
 
-Six-item status: research charter, repository scaffold, compiled paper skeleton, related-work registry and milestones are delivered. Data/compute availability is only partly confirmed: actual data, annotation/group provenance, use permission and MPS model training remain unverified.
+数据审计后先冻结独立的预实验协议，再实现数据相关预实验；合成 MPS/软件测试可先行。最终配置与三层分析在预实验后冻结，解决了旧版冻结顺序的循环依赖。当前 CLI 只检查最终训练资格。
 
-Next: obtain the real data path and provenance, run the audit, test actual model throughput, freeze the protocol, then implement and run the full training pipeline. See MILESTONES.md. Do not present future steps as completed experiments.
+v0.1 本地 DOCX/PDF/XLSX 和压缩包是历史快照，本次不声称全部重制。六项当前约定见 DELIVERABLES.md，真实提交以 Git 历史为准，不在各表手填互相冲突的短哈希。原始工业图像、用户文献 PDF 和本地路径不入公开 Git。
+
+下一步：获得真实目录/来源证据，核验语义分析资格，冻结预实验协议并测量成本。没有通过最终门槛前，不开展正式训练或打开最终测试标签。

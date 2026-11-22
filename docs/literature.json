@@ -13,10 +13,11 @@
     "method": "CNN 对照通道注意力和空间注意力；特征/显著性分析",
     "metrics": "Accuracy、漏检率 MD、误报率 FA",
     "limitation": "不能据监督二分类或 t-SNE 分离推断无监督多缺陷聚类有效",
-    "our_difference": "在目标域不使用缺陷标签训练，检验空间注意力增益与数据规模的交互",
+    "our_difference": "目标域不使用缺陷类别训练，比较高维几何与缺陷/来源信息依赖；规模作为受控因素",
     "verification": "本地全文已读；Crossref 元数据 HTTP 200；出版社/DOI 浏览访问受限",
     "evidence": "用户 main(1).pdf 第 3–10 页；Crossref https://api.crossref.org/works/10.1016/j.eswa.2025.126386",
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "core_review": true
   },
   {
     "id": "L02",
@@ -32,10 +33,11 @@
     "method": "预训练局部特征加权汇聚；无监督/少量正常标签两种设置",
     "metrics": "NMI、ARI、F1",
     "limitation": "与本题最接近；局部特征加权聚合已有先例，且正常标签版本含额外监督",
-    "our_difference": "加入公平的固定特征/空间汇聚参照，研究焊缝训练规模效应；不声称首次异常聚类",
+    "our_difference": "对照已有局部加权聚类，并检验几何变化的缺陷语义依据；不称首次异常聚类",
     "verification": "官方会议页与全文已核对；PDF HTTP 200",
     "evidence": "全文 §3–4、Table 1；https://openaccess.thecvf.com/content/WACV2023/html/Sohn_Anomaly_Clustering_Grouping_Images_Into_Coherent_Clusters_of_Anomaly_Types_WACV_2023_paper.html",
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "core_review": true
   },
   {
     "id": "L03",
@@ -54,7 +56,8 @@
     "our_difference": "候选外部数据；先核验源图分组和使用条款，明确裁块单位差异",
     "verification": "期刊页及 5 页 PDF 经 web 打开；本机 urllib 证书错误另记",
     "evidence": "PDF §II–III、Table I/III；https://www.ijecer.org/ijecer/article/download/320/30/640",
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "core_review": true
   },
   {
     "id": "L04",
@@ -73,7 +76,8 @@
     "our_difference": "界定任务差异；本题混合无标签训练，不把异常检测指标当聚类证据",
     "verification": "出版社 HTML 全文已打开；PDF 链接工具失败",
     "evidence": "HTML §3–4，尤其 §4.1/4.3",
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "core_review": false
   },
   {
     "id": "L05",
@@ -89,10 +93,11 @@
     "method": "通道注意力后接空间注意力；池化、卷积和门控",
     "metrics": "Top-1/Top-5 error、检测 AP",
     "limitation": "完整 CBAM 包括两种分支；只用空间分支不能冒称新 CBAM 或完整复现",
-    "our_difference": "主对照只增一个空间分支，固定位置以归因；不是算法创新",
+    "our_difference": "固定实现与插入位置；模块机制是已知结构，本文检验其信息依赖，不提出新门控",
     "verification": "arXiv 摘要及全文已读；PDF 已下载",
     "evidence": "原文 §3，空间分支公式及结构图",
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "core_review": true
   },
   {
     "id": "L06",
@@ -111,7 +116,8 @@
     "our_difference": "选择 ResNet18 作为受控骨干；预训练权重版本与监督来源须披露",
     "verification": "arXiv 元数据/摘要已核对；不引用未核查的实验数值",
     "evidence": "arXiv:1512.03385，2015 预印本、2016 会议版",
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "core_review": true
   },
   {
     "id": "L07",
@@ -127,10 +133,11 @@
     "method": "双视图增强、投影头、对比损失；研究 batch/增强影响",
     "metrics": "线性评价与迁移分类准确率",
     "limitation": "自然图像增强/大 batch 经验不能直接移植低对比焊缝",
-    "our_difference": "预实验检查整幅视野保留和小 batch；聚类用投影头前特征",
+    "our_difference": "区分增强一致性与跨图像缺陷语义；以统一训练和三层评价检验",
     "verification": "PMLR 与 arXiv 全文已核对；PDF HTTP 200",
     "evidence": "原文 §2、增强与 batch size 消融",
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "core_review": true
   },
   {
     "id": "L08",
@@ -149,7 +156,8 @@
     "our_difference": "只作为预实验失败时的全矩阵替代；不可按测试结果混选算法",
     "verification": "arXiv/CVF 信息与全文已核对；PDF HTTP 200",
     "evidence": "原文 §3、Fig. 2；预印本 2019，会议 2020",
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "core_review": true
   },
   {
     "id": "L09",
@@ -168,7 +176,8 @@
     "our_difference": "作为方法谱系，避免把 K-means 后处理误称新的深度聚类算法",
     "verification": "PMLR 元数据及全文已核对；PDF HTTP 200",
     "evidence": "原文 §3–4、Table 1/2",
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "core_review": false
   },
   {
     "id": "L10",
@@ -187,7 +196,8 @@
     "our_difference": "明确本题两阶段协议及标签隔离，区分训练目标与评价指标",
     "verification": "arXiv 全文已核对；PDF HTTP 200",
     "evidence": "原文 §3–4；不外推原文计算时长到 M1",
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "core_review": false
   },
   {
     "id": "L11",
@@ -206,7 +216,8 @@
     "our_difference": "纠正旧报告算力方案；起步不引入 GradCache 的额外实现复杂度",
     "verification": "ACL 元数据及 6 页全文已核对；PDF HTTP 200",
     "evidence": "原文 §2–3，batch 梯度依赖与缓存方案",
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "core_review": false
   },
   {
     "id": "L12",
@@ -225,6 +236,107 @@
     "our_difference": "否定“焊缝小样本自监督此前无人研究”的宽泛创新声明",
     "verification": "PolyU 作者机构条目/DOI/摘要已核对；全文未获取",
     "evidence": "作者机构条目 Abstract、Bibliographic data",
+    "verified_date": "2026-11-22",
+    "core_review": true
+  },
+  {
+    "id": "L13",
+    "key": "wang2020alignment",
+    "title": "Understanding Contrastive Representation Learning through Alignment and Uniformity on the Hypersphere",
+    "authors": "Tongzhou Wang; Phillip Isola",
+    "year": 2020,
+    "venue": "ICML 2020, PMLR 119, 9929–9939",
+    "identifier": "arXiv:2005.10242",
+    "url": "https://proceedings.mlr.press/v119/wang20k.html",
+    "task": "对比表征学习解释",
+    "data": "摘要描述视觉/语言实验；未核查具体划分",
+    "method": "从正样本对齐与归一化表征分布均匀性分析对比学习",
+    "metrics": "alignment、uniformity 与下游任务；不移用数值",
+    "limitation": "增强正样本对齐不等于真实缺陷类别内紧致；本文焊缝语义需另检验",
+    "our_difference": "在原始高维空间计算缺陷类别几何与跨来源近邻，排查退化",
+    "verification": "PMLR 原始元数据、摘要和 BibTeX 已打开；尚未精读全文",
+    "evidence": "https://proceedings.mlr.press/v119/wang20k.html",
+    "core_review": true,
+    "verified_date": "2026-11-22"
+  },
+  {
+    "id": "L14",
+    "key": "adebayo2018sanity",
+    "title": "Sanity Checks for Saliency Maps",
+    "authors": "Julius Adebayo; Justin Gilmer; Michael Muelly; Ian Goodfellow; Moritz Hardt; Been Kim",
+    "year": 2018,
+    "venue": "NeurIPS 2018, volume 31",
+    "identifier": "arXiv:1810.03292",
+    "url": "https://proceedings.neurips.cc/paper/2018/hash/294a8ed24b1ad22ec2e7efea049b8737-Abstract.html",
+    "task": "显著性解释可靠性检验",
+    "data": "摘要未详列数据划分；不推断",
+    "method": "检验部分显著性解释对模型与数据的依赖",
+    "metrics": "解释是否反映模型/数据的检验；细节待全文核对",
+    "limitation": "结论针对所检验的显著性方法，不能直接断言 CBAM 门控无效",
+    "our_difference": "区域图只作关联证据，加入匹配扰动与来源诊断；聚类归因目标另定义",
+    "verification": "NeurIPS 官方摘要和作者/会议元数据已打开；尚未精读全文",
+    "evidence": "https://proceedings.neurips.cc/paper/2018/hash/294a8ed24b1ad22ec2e7efea049b8737-Abstract.html",
+    "core_review": true,
+    "verified_date": "2026-11-22"
+  },
+  {
+    "id": "L15",
+    "key": "geirhos2020shortcut",
+    "title": "Shortcut Learning in Deep Neural Networks",
+    "authors": "Robert Geirhos; Jörn-Henrik Jacobsen; Claudio Michaelis; Richard Zemel; Wieland Brendel; Matthias Bethge; Felix A. Wichmann",
+    "year": 2020,
+    "venue": "Nature Machine Intelligence; perspective",
+    "identifier": "10.1038/s42256-020-00257-z",
+    "url": "https://arxiv.org/abs/2004.07780",
+    "task": "捷径学习与泛化问题的观点分析",
+    "data": "观点文章，不当作焊缝实验数据",
+    "method": "讨论标准评价有效而条件变化时失效的决策线索",
+    "metrics": "非统一新基准；不引用未知实验数值",
+    "limitation": "不能据此证明本数据存在捷径，或声称模型已经去除混杂",
+    "our_difference": "核验类别×来源覆盖，进行来源内与跨来源诊断；缺失证据不冒充曝光记录",
+    "verification": "作者 arXiv 摘要、作者与关联期刊 DOI 已打开；尚未精读全文",
+    "evidence": "https://arxiv.org/abs/2004.07780",
+    "core_review": true,
+    "verified_date": "2026-11-22"
+  },
+  {
+    "id": "L16",
+    "key": "fong2017perturbation",
+    "title": "Interpretable Explanations of Black Boxes by Meaningful Perturbation",
+    "authors": "Ruth Fong; Andrea Vedaldi",
+    "year": 2017,
+    "venue": "ICCV 2017",
+    "identifier": "10.1109/ICCV.2017.371; arXiv:1704.03296",
+    "url": "https://arxiv.org/abs/1704.03296",
+    "task": "基于扰动的模型解释",
+    "data": "原任务为分类器解释；摘要未详列划分",
+    "method": "用显式、可解释的图像扰动研究决策依赖",
+    "metrics": "扰动解释的可检验性；不移用未知数值",
+    "limitation": "分类决策不等于无分类头的聚类；扰动伪影与语义改变需单独控制",
+    "our_difference": "预定缺陷/背景匹配扰动，冻结中心，报告特征与分配变化；不在测试上学习解释掩膜",
+    "verification": "CVF 直开返回 403；作者 arXiv 元数据、摘要与关联 DOI 已打开；尚未精读全文",
+    "evidence": "https://arxiv.org/abs/1704.03296",
+    "core_review": true,
+    "verified_date": "2026-11-22"
+  },
+  {
+    "id": "L17",
+    "key": "vinh2010information",
+    "title": "Information Theoretic Measures for Clusterings Comparison: Variants, Properties, Normalization and Correction for Chance",
+    "authors": "Nguyen Xuan Vinh; Julien Epps; James Bailey",
+    "year": 2010,
+    "venue": "JMLR 11(95), 2837–2854",
+    "identifier": "JMLR 11(95); no DOI/arXiv verified",
+    "url": "https://jmlr.org/papers/v11/vinh10a.html",
+    "task": "聚类划分比较指标的性质",
+    "data": "指标分析；未核查具体实验数据",
+    "method": "系统分析信息论聚类指标、归一化和随机一致性校正",
+    "metrics": "信息论划分比较与随机校正",
+    "limitation": "指标校正不能替代独立数据、语义标签与合理评价范围",
+    "our_difference": "预定 ARI 主指标，AMI/NMI 辅助，记录 average_method，避免事后挑指标",
+    "verification": "JMLR 官方作者、卷页、摘要已打开；尚未精读全文；未核实 DOI/arXiv",
+    "evidence": "https://jmlr.org/papers/v11/vinh10a.html",
+    "core_review": false,
     "verified_date": "2026-11-22"
   }
 ]

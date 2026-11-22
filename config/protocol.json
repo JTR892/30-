@@ -1,11 +1,24 @@
 {
-  "version": "0.1-draft",
+  "version": "0.2-draft",
   "status": "DRAFT",
   "dataset": "industrial weld radiographs; inventory and taxonomy pending",
   "unit": "whole radiograph image; independence enforced by source group",
-  "training_ratios": [0.1, 0.5, 1.0],
-  "seeds": [17, 29, 43, 71, 101],
-  "model_variants": ["resnet18_simclr", "resnet18_simclr_spatial_cbam"],
+  "training_ratios": [
+    0.1,
+    0.5,
+    1.0
+  ],
+  "seeds": [
+    17,
+    29,
+    43,
+    71,
+    101
+  ],
+  "model_variants": [
+    "resnet18_simclr",
+    "resnet18_simclr_spatial_cbam"
+  ],
   "attention_location": "after layer4, before global average pooling",
   "attention_definition": "channel mean/max -> concat -> 7x7 conv -> sigmoid; multiply spatially; not full CBAM",
   "initialization": "ImageNet supervised weights; common backbone tensors paired; exact version/hash pending",
@@ -27,8 +40,49 @@
   "pca": "none in primary experiment; optional calibration-fit only sensitivity analysis",
   "clustering_fit_pool": "fixed unlabeled calibration split, excluded from representation training and final test",
   "primary_metric": "ARI on predeclared eligible single-defect test images",
-  "secondary_metrics": ["NMI", "cluster stability", "evaluation coverage", "runtime"],
-  "primary_contrast": "[ARI_attn(10%)-ARI_base(10%)]-[ARI_attn(100%)-ARI_base(100%)]",
-  "claims": "hypotheses only; no performance results"
+  "secondary_metrics": [
+    "AMI (arithmetic)",
+    "NMI (arithmetic)",
+    "cross-source class-balanced distances",
+    "kNN purity",
+    "cluster stability",
+    "semantic diagnostics when eligible",
+    "evaluation coverage",
+    "runtime"
+  ],
+  "primary_contrast": "equal-weight mean of paired ARI attention-minus-baseline differences at training ratios 0.1, 0.5, 1.0; report all ratios",
+  "claims": "hypotheses only; no performance results",
+  "research_questions": [
+    "clustering performance",
+    "representation geometry",
+    "defect versus acquisition/source reliance"
+  ],
+  "training_size_role": "controlled factor; not a parameter recommendation",
+  "checkpoint_rule": "fixed final optimizer step; no test-based selection",
+  "secondary_contrast": "[ARI_attn(10%)-ARI_base(10%)]-[ARI_attn(100%)-ARI_base(100%)]",
+  "analysis_plan": "docs/ANALYSIS_PLAN.md",
+  "analysis_spec_sha256": null,
+  "analysis_spec_frozen": false,
+  "semantic_evidence_audited": false,
+  "semantic_analysis_scope": null,
+  "geometry_spec": {
+    "feature": "preprojection GAP; L2 normalized",
+    "distance": "euclidean; class/class-pair balanced; exclude same source groups",
+    "knn_k": 10,
+    "insufficient_neighbors": "not estimable; report coverage",
+    "kmeans_stability_seeds": [
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010
+    ],
+    "pair_sampling": "exact blocked accumulation; any approximation must be specified before test access"
+  },
+  "pilot_protocol": "separate local pilot protocol must freeze after audit; not authorized by final-protocol CLI"
 }
-
