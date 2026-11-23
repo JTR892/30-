@@ -117,7 +117,7 @@
     "verification": "arXiv 元数据/摘要已核对；不引用未核查的实验数值",
     "evidence": "arXiv:1512.03385，2015 预印本、2016 会议版",
     "verified_date": "2026-11-22",
-    "core_review": true
+    "core_review": false
   },
   {
     "id": "L07",
@@ -157,7 +157,7 @@
     "verification": "arXiv/CVF 信息与全文已核对；PDF HTTP 200",
     "evidence": "原文 §3、Fig. 2；预印本 2019，会议 2020",
     "verified_date": "2026-11-22",
-    "core_review": true
+    "core_review": false
   },
   {
     "id": "L09",
@@ -338,5 +338,45 @@
     "evidence": "https://jmlr.org/papers/v11/vinh10a.html",
     "core_review": false,
     "verified_date": "2026-11-22"
+  },
+  {
+    "id": "L18",
+    "key": "cheng2025weldssl",
+    "title": "A weld defect segmentation framework based on visual self-supervised learning",
+    "authors": "Huyue Cheng; Hongquan Jiang; Yong Zhang; Jianmin Gao; Huan Yao; Guotao Nie",
+    "year": 2025,
+    "venue": "Nondestructive Testing and Evaluation, online 27 November 2025",
+    "identifier": "10.1080/10589759.2025.2595520",
+    "url": "https://doi.org/10.1080/10589759.2025.2595520",
+    "task": "焊缝 X 射线图像缺陷分割；自监督预训练与分割框架",
+    "data": "作者仓库说明 RTWD、对象矩形标注及带分割掩膜的 RTWD-Segmention；数据下载和许可未实测",
+    "method": "半自动缺陷数据提取、对象级掩码自监督预训练、多头解码分割器",
+    "metrics": "摘要未披露可核对的具体指标或数值；全文待核",
+    "limitation": "分割与整图缺陷类型聚类任务不同；作者数据说明含矩形/分割掩膜，不能据摘要宣称全流程无标注；预训练与验证独立性需按具体划分核验",
+    "our_difference": "本研究考察目标域缺陷类别不参与表示训练时的整图聚类及空间注意力信息依赖；RTWD 仅为经许可、分组与样本单位核验后的外部数据候选",
+    "verification": "出版社原始摘要/元数据经搜索索引可见；出版社全文直接打开 403；作者 GitHub README 与 RTWD.md 已打开；数据下载未验证、全文未精读",
+    "evidence": "https://www.tandfonline.com/doi/abs/10.1080/10589759.2025.2595520 ; https://github.com/longteng-coder/Wdsf-ssl/blob/main/RTWD/RTWD.md",
+    "verified_date": "2026-11-23",
+    "core_review": true
+  },
+  {
+    "id": "L19",
+    "key": "chen2026welddiffusion",
+    "title": "An unsupervised welding quality detection method based on high-quality condition-guided diffusion reconstruction",
+    "authors": "Xin Chen; Bin Zi; Kai Tang; Wenjun Tang; Yuan Li",
+    "year": 2026,
+    "venue": "Journal of Manufacturing Processes 160, 429–441",
+    "identifier": "10.1016/j.jmapro.2026.01.059",
+    "url": "https://doi.org/10.1016/j.jmapro.2026.01.059",
+    "task": "焊缝 X 射线图像基于重建的无监督缺陷检测与定位",
+    "data": "摘要描述基于真实缺陷特征合成多类模拟缺陷并增强；实际来源/划分以全文复核为准",
+    "method": "模拟缺陷生成；条件引导高质量扩散重建 H-DiffuM；鉴别网络中多尺度频域注意力融合 MFDAFM",
+    "metrics": "出版社索引摘要报告像素级 AUROC 与 AP；具体分母、评估集和对比公平性待全文复核，不移植数值",
+    "limitation": "任务是异常检测/定位，不是缺陷类型聚类；使用模拟缺陷构造训练样本，不能将“无监督”直接等同本题混合无标签训练",
+    "our_difference": "拟在真实混合图像上考察整图缺陷类型表征和聚类；关注空间注意力的语义/来源依赖，不能将检测指标与聚类指标直接比较",
+    "verification": "出版社原始摘要与书目经搜索索引可见；出版社页面直接打开 403；未能取得或精读可验证全文",
+    "evidence": "https://www.sciencedirect.com/science/article/pii/S1526612526000794",
+    "verified_date": "2026-11-23",
+    "core_review": true
   }
 ]

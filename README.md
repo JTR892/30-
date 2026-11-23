@@ -12,7 +12,7 @@ Weld radiograph attention study
 |---|---|
 | [研究任务书](docs/RESEARCH_BRIEF.md) | 问题、数据、方法、指标、三项待检验问题与风险 |
 | [三层分析计划](docs/ANALYSIS_PLAN.md) | 性能、几何、工业语义的定义、对照和证据边界 |
-| [核心相关工作](docs/RELATED_WORK.md) | 核心 12 篇及核验深度；总台账 17 条 |
+| [核心相关工作](docs/RELATED_WORK.md) | 核心 12 篇及核验深度；总台账 19 条 |
 | [资源核验](docs/RESOURCES.md) | 原始数据、位置/形态/来源与采集信息缺项 |
 | [六项验收](docs/DELIVERABLES.md) | 本版材料、实现范围及未完成依赖 |
 
@@ -51,7 +51,7 @@ cd paper
 latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-使用 TeX Live 的 Latin Modern 与 Fandol 字体；缺失时安装相应 TeX 字体包。`references.bib` 与 `docs/literature.json` 一一对应，共 17 条，其中核心比较采用 12 条。论文是含摘要、章节、图和结果占位的通用 article 骨架。位置/形态证据不足时收缩机制主张；没有编造结果。
+使用 TeX Live 的 Latin Modern 与 Fandol 字体；缺失时安装相应 TeX 字体包。`references.bib` 与 `docs/literature.json` 一一对应，共 19 条，其中核心比较采用 12 条。论文是含摘要、章节、图和结果占位的通用 article 骨架。位置/形态证据不足时收缩机制主张；没有编造结果。
 
 ## Publication status
 

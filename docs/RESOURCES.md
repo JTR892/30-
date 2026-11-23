@@ -13,7 +13,7 @@
 | 实测曝光参数、位深、窗口化与处理记录 | 待核 | 成像因素解释；平均灰度不替代曝光参数 |
 | 焊缝区域与宽度测量依据 | 待核 | 位置匹配、结构因素诊断；不可凭文件名猜测 |
 | MPS 真实前反向、训练吞吐和峰值内存 | 待测 | 确定输入、batch、训练矩阵及后处理预算 |
-| 文献 | 17 条台账，其中核心 12 条 | 阅读深度逐条标明；原始资料 PDF 留在 Git 外 |
+| 文献 | 19 条台账，其中核心 12 条 | 阅读深度逐条标明；原始资料 PDF 留在 Git 外 |
 
 建议本地保存元数据表：`data/metadata/semantic_evidence.csv`，仅是待创建位置，尚无真实文件。建议字段：image_id、source_id、device_id、batch_id、exposure_value、exposure_unit、bit_depth、processing_record、weld_region_reference、defect_annotation_reference、annotation_type、shape_reference、evidence_reference、review_status。空值保持缺失，禁止填入假设值；原始数据和敏感元数据不入公开 Git。
 

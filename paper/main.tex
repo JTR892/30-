@@ -36,6 +36,8 @@
 \section{相关工作}
 正文将分别讨论焊缝分类与检测、空间注意力、对比表示学习及工业异常聚类。CBAM\cite{woo2018cbam}、SimCLR\cite{chen2020simclr}与ResNet\cite{he2016resnet}属于既有方法。本研究使用 CBAM 的空间分支，不等同于完整 CBAM。正常图像训练的异常检测\cite{mahvelati2025flow}、监督图块分类\cite{totino2023riawelc}与本题需区分任务和样本单位。DEC\cite{xie2016dec}及DeepCluster\cite{caron2018deepcluster}提供深度聚类背景，但不构成本方案的新算法证据。
 
+焊缝射线缺陷分割已有对象级掩码自监督预训练框架\cite{cheng2025weldssl}；基于条件扩散重建的焊缝质量检测也引入模拟缺陷和多尺度频域注意力\cite{chen2026welddiffusion}。这两项工作分别面向分割和异常检测/定位，其监督与数据构建方式需按原文进一步核验，不能将其指标直接等同整图缺陷类别聚类。
+
 对比表征的对齐与均匀性分析\cite{wang2020alignment}为几何测量提供动机，但增强视图对齐不等于真实缺陷类内紧致。显著性解释的检验\cite{adebayo2018sanity}、捷径学习讨论\cite{geirhos2020shortcut}和扰动解释方法\cite{fong2017perturbation}支持增加定量区域与来源对照，不能据此认定本数据已经存在或消除了混杂。
 
 \section{数据与评价范围}
