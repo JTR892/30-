@@ -12,7 +12,7 @@ Weld radiograph attention study
 |---|---|
 | [研究任务书](docs/RESEARCH_BRIEF.md) | 问题、数据、方法、指标、三项待检验问题与风险 |
 | [三层分析计划](docs/ANALYSIS_PLAN.md) | 性能、几何、工业语义的定义、对照和证据边界 |
-| [核心相关工作](docs/RELATED_WORK.md) | 核心 12 篇及核验深度；总台账 19 条 |
+| [核心相关工作](docs/RELATED_WORK.md) / [整理与访问状态](docs/LITERATURE_ACCESS.md) | 核心 12 篇；总台账 19 条均已基础整理，阅读深度逐条说明 |
 | [资源核验](docs/RESOURCES.md) | 原始数据、位置/形态/来源与采集信息缺项 |
 | [六项验收](docs/DELIVERABLES.md) | 本版材料、实现范围及未完成依赖 |
 

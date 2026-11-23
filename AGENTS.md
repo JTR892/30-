@@ -36,3 +36,5 @@ Model training and geometry/semantic analysis are not implemented at this stage.
 ## Verification and change control
 Run relevant tests after changing audit/split semantics. Test fixtures are synthetic and cannot establish real data availability or model performance. Keep label taxonomy, exclusions, seeds, cluster-count rule and protocol version in an audit trail. Any post-test changes must be labeled exploratory and must not overwrite the frozen primary analysis.
 
+Every literature update must be synchronized to the authorized GitHub repository, including the literature registry, relevant comparison table, bibliography or manuscript as applicable. Verify the remote commit and report any sync failure. Record organization status separately from actual access and reading depth; never describe abstract-only work as full-text review. For L06 and L13–L17, retain existing records and do not revisit the papers solely for further verification unless the user changes this instruction.
+

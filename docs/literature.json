@@ -17,7 +17,10 @@
     "verification": "本地全文已读；Crossref 元数据 HTTP 200；出版社/DOI 浏览访问受限",
     "evidence": "用户 main(1).pdf 第 3–10 页；Crossref https://api.crossref.org/works/10.1016/j.eswa.2025.126386",
     "verified_date": "2026-11-22",
-    "core_review": true
+    "core_review": true,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。"
   },
   {
     "id": "L02",
@@ -37,7 +40,10 @@
     "verification": "官方会议页与全文已核对；PDF HTTP 200",
     "evidence": "全文 §3–4、Table 1；https://openaccess.thecvf.com/content/WACV2023/html/Sohn_Anomaly_Clustering_Grouping_Images_Into_Coherent_Clusters_of_Anomaly_Types_WACV_2023_paper.html",
     "verified_date": "2026-11-22",
-    "core_review": true
+    "core_review": true,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。"
   },
   {
     "id": "L03",
@@ -57,7 +63,10 @@
     "verification": "期刊页及 5 页 PDF 经 web 打开；本机 urllib 证书错误另记",
     "evidence": "PDF §II–III、Table I/III；https://www.ijecer.org/ijecer/article/download/320/30/640",
     "verified_date": "2026-11-22",
-    "core_review": true
+    "core_review": true,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。"
   },
   {
     "id": "L04",
@@ -77,7 +86,10 @@
     "verification": "出版社 HTML 全文已打开；PDF 链接工具失败",
     "evidence": "HTML §3–4，尤其 §4.1/4.3",
     "verified_date": "2026-11-22",
-    "core_review": false
+    "core_review": false,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。"
   },
   {
     "id": "L05",
@@ -97,7 +109,10 @@
     "verification": "arXiv 摘要及全文已读；PDF 已下载",
     "evidence": "原文 §3，空间分支公式及结构图",
     "verified_date": "2026-11-22",
-    "core_review": true
+    "core_review": true,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。"
   },
   {
     "id": "L06",
@@ -117,7 +132,10 @@
     "verification": "arXiv 元数据/摘要已核对；不引用未核查的实验数值",
     "evidence": "arXiv:1512.03385，2015 预印本、2016 会议版",
     "verified_date": "2026-11-22",
-    "core_review": false
+    "core_review": false,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "用户要求不再访问；保留既有核验深度，未核实内容保持待核。"
   },
   {
     "id": "L07",
@@ -137,7 +155,10 @@
     "verification": "PMLR 与 arXiv 全文已核对；PDF HTTP 200",
     "evidence": "原文 §2、增强与 batch size 消融",
     "verified_date": "2026-11-22",
-    "core_review": true
+    "core_review": true,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。"
   },
   {
     "id": "L08",
@@ -157,7 +178,10 @@
     "verification": "arXiv/CVF 信息与全文已核对；PDF HTTP 200",
     "evidence": "原文 §3、Fig. 2；预印本 2019，会议 2020",
     "verified_date": "2026-11-22",
-    "core_review": false
+    "core_review": false,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。"
   },
   {
     "id": "L09",
@@ -177,7 +201,10 @@
     "verification": "PMLR 元数据及全文已核对；PDF HTTP 200",
     "evidence": "原文 §3–4、Table 1/2",
     "verified_date": "2026-11-22",
-    "core_review": false
+    "core_review": false,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。"
   },
   {
     "id": "L10",
@@ -197,7 +224,10 @@
     "verification": "arXiv 全文已核对；PDF HTTP 200",
     "evidence": "原文 §3–4；不外推原文计算时长到 M1",
     "verified_date": "2026-11-22",
-    "core_review": false
+    "core_review": false,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。"
   },
   {
     "id": "L11",
@@ -217,7 +247,10 @@
     "verification": "ACL 元数据及 6 页全文已核对；PDF HTTP 200",
     "evidence": "原文 §2–3，batch 梯度依赖与缓存方案",
     "verified_date": "2026-11-22",
-    "core_review": false
+    "core_review": false,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。"
   },
   {
     "id": "L12",
@@ -229,15 +262,19 @@
     "identifier": "10.1016/j.aei.2023.101963",
     "url": "https://research.polyu.edu.hk/en/publications/an-expert-knowledge-empowered-cnn-approach-for-welding-radiograph/",
     "task": "小样本焊缝射线图像识别",
-    "data": "摘要未给出可完整复核的数据划分细节",
-    "method": "去模糊与亮度调整自监督任务，辅助 CNN 识别",
-    "metrics": "摘要报告 F1；不移用数值设定本题目标",
-    "limitation": "仅核验作者机构元数据和摘要，未取得全文；不能评论其未知的实验细节",
-    "our_difference": "否定“焊缝小样本自监督此前无人研究”的宽泛创新声明",
-    "verification": "PolyU 作者机构条目/DOI/摘要已核对；全文未获取",
-    "evidence": "作者机构条目 Abstract、Bibliographic data",
-    "verified_date": "2026-11-22",
-    "core_review": true
+    "data": "原文 §4.1：64×64 缺陷区域图像共 2,154 张，SL/PO/LP/NM 四类；训练/验证/测试 1,510/431/213。来源焊口或底片分组需进一步核查。",
+    "method": "去模糊与亮度调整自监督重建后迁移到分类器；分类阶段使用交叉熵监督。",
+    "metrics": "Acc、Precision、Recall、F1；论文表 4 报告按样本数加权结果。",
+    "limitation": "图块与整图单位不同；自监督预训练后的分类阶段使用类别标签；不能将分类 F1 当作无监督聚类结果。",
+    "our_difference": "目标域缺陷类别不参与表示训练，研究完整图像的缺陷语义聚类、几何及信息依赖；来源独立性须审计。",
+    "verification": "2026-11-23 当前浏览器经机构权限打开出版社全文，核对 §3.1、§3.3、§4.1 和表 3/4；非逐字全文精读。先前自动网页访问受限。",
+    "evidence": "https://www.sciencedirect.com/science/article/pii/S1474034623000915#s0040 ; https://www.sciencedirect.com/science/article/pii/S1474034623000915#s0075",
+    "verified_date": "2026-11-23",
+    "core_review": true,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。",
+    "reading_depth": "出版社全文可访问；已核对指定方法/实验章节与表格，尚未逐字全文精读。"
   },
   {
     "id": "L13",
@@ -257,7 +294,10 @@
     "verification": "PMLR 原始元数据、摘要和 BibTeX 已打开；尚未精读全文",
     "evidence": "https://proceedings.mlr.press/v119/wang20k.html",
     "core_review": true,
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "用户要求不再访问；保留既有核验深度，未核实内容保持待核。"
   },
   {
     "id": "L14",
@@ -277,7 +317,10 @@
     "verification": "NeurIPS 官方摘要和作者/会议元数据已打开；尚未精读全文",
     "evidence": "https://proceedings.neurips.cc/paper/2018/hash/294a8ed24b1ad22ec2e7efea049b8737-Abstract.html",
     "core_review": true,
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "用户要求不再访问；保留既有核验深度，未核实内容保持待核。"
   },
   {
     "id": "L15",
@@ -297,7 +340,10 @@
     "verification": "作者 arXiv 摘要、作者与关联期刊 DOI 已打开；尚未精读全文",
     "evidence": "https://arxiv.org/abs/2004.07780",
     "core_review": true,
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "用户要求不再访问；保留既有核验深度，未核实内容保持待核。"
   },
   {
     "id": "L16",
@@ -317,7 +363,10 @@
     "verification": "CVF 直开返回 403；作者 arXiv 元数据、摘要与关联 DOI 已打开；尚未精读全文",
     "evidence": "https://arxiv.org/abs/1704.03296",
     "core_review": true,
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "用户要求不再访问；保留既有核验深度，未核实内容保持待核。"
   },
   {
     "id": "L17",
@@ -337,7 +386,10 @@
     "verification": "JMLR 官方作者、卷页、摘要已打开；尚未精读全文；未核实 DOI/arXiv",
     "evidence": "https://jmlr.org/papers/v11/vinh10a.html",
     "core_review": false,
-    "verified_date": "2026-11-22"
+    "verified_date": "2026-11-22",
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "用户要求不再访问；保留既有核验深度，未核实内容保持待核。"
   },
   {
     "id": "L18",
@@ -349,15 +401,19 @@
     "identifier": "10.1080/10589759.2025.2595520",
     "url": "https://doi.org/10.1080/10589759.2025.2595520",
     "task": "焊缝 X 射线图像缺陷分割；自监督预训练与分割框架",
-    "data": "作者仓库说明 RTWD、对象矩形标注及带分割掩膜的 RTWD-Segmention；数据下载和许可未实测",
-    "method": "半自动缺陷数据提取、对象级掩码自监督预训练、多头解码分割器",
-    "metrics": "摘要未披露可核对的具体指标或数值；全文待核",
-    "limitation": "分割与整图缺陷类型聚类任务不同；作者数据说明含矩形/分割掩膜，不能据摘要宣称全流程无标注；预训练与验证独立性需按具体划分核验",
-    "our_difference": "本研究考察目标域缺陷类别不参与表示训练时的整图聚类及空间注意力信息依赖；RTWD 仅为经许可、分组与样本单位核验后的外部数据候选",
-    "verification": "出版社原始摘要/元数据经搜索索引可见；出版社全文直接打开 403；作者 GitHub README 与 RTWD.md 已打开；数据下载未验证、全文未精读",
-    "evidence": "https://www.tandfonline.com/doi/abs/10.1080/10589759.2025.2595520 ; https://github.com/longteng-coder/Wdsf-ssl/blob/main/RTWD/RTWD.md",
+    "data": "原文 §4.1：RTWD 记载 11,484 张缺陷图像、8 类；RTWD-segmentation 含 2,107 个分割标签。原始来源组及数据下载/许可仍待核。",
+    "method": "专家标注训练 YOLOv8 提取缺陷区域，随后对象级掩码自监督预训练与多头解码；分割阶段使用像素级交叉熵。",
+    "metrics": "原文 §4.1：mAcc、mIoU、前景/背景 Bin-mIoU；不能与 ARI 直接等同。",
+    "limitation": "半自动提取包含专家标注与监督检测，分割也使用像素标签；图块分割与整图类型聚类不同。来源分组独立性及具体评估划分需进一步检查。",
+    "our_difference": "目标域缺陷类别不参与表示训练，以整图聚类与空间注意力信息依赖为核心；RTWD 仅为许可、分组、样本单位核验后的候选数据。",
+    "verification": "2026-11-23 用户协助机构访问后出版社页面显示 Full access；核对 §3.1、§3 分割损失、§4.1–4.2 及作者 RTWD.md；非逐字全文精读。此前自动访问 403。",
+    "evidence": "https://www.tandfonline.com/doi/full/10.1080/10589759.2025.2595520 ; https://github.com/longteng-coder/Wdsf-ssl/blob/main/RTWD/RTWD.md",
     "verified_date": "2026-11-23",
-    "core_review": true
+    "core_review": true,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。",
+    "reading_depth": "出版社全文可访问；已核对指定方法/实验章节及作者数据说明，尚未逐字全文精读。"
   },
   {
     "id": "L19",
@@ -369,14 +425,18 @@
     "identifier": "10.1016/j.jmapro.2026.01.059",
     "url": "https://doi.org/10.1016/j.jmapro.2026.01.059",
     "task": "焊缝 X 射线图像基于重建的无监督缺陷检测与定位",
-    "data": "摘要描述基于真实缺陷特征合成多类模拟缺陷并增强；实际来源/划分以全文复核为准",
-    "method": "模拟缺陷生成；条件引导高质量扩散重建 H-DiffuM；鉴别网络中多尺度频域注意力融合 MFDAFM",
-    "metrics": "出版社索引摘要报告像素级 AUROC 与 AP；具体分母、评估集和对比公平性待全文复核，不移植数值",
-    "limitation": "任务是异常检测/定位，不是缺陷类型聚类；使用模拟缺陷构造训练样本，不能将“无监督”直接等同本题混合无标签训练",
-    "our_difference": "拟在真实混合图像上考察整图缺陷类型表征和聚类；关注空间注意力的语义/来源依赖，不能将检测指标与聚类指标直接比较",
-    "verification": "出版社原始摘要与书目经搜索索引可见；出版社页面直接打开 403；未能取得或精读可验证全文",
-    "evidence": "https://www.sciencedirect.com/science/article/pii/S1526612526000794",
+    "data": "原文 §3.1：采集 245 张约 1k×1k 焊缝图像，裁剪得到 1,243 张，其中 1,181 无缺陷图像用于构造模拟缺陷训练，62 张缺陷图像标注用于测试；另用 GDXray 裁剪图像测试。",
+    "method": "模拟缺陷生成；条件引导扩散重建 H-DiffuM；鉴别网络多尺度频域注意力 MFDAFM。",
+    "metrics": "原文 §3.2、表 2/3：像素级 AUROC 和 AP；表中该方法分别为 97.80% 和 93.34%，其设置与本研究不同。",
+    "limitation": "异常检测/定位并非缺陷类型聚类；使用正常图像生成模拟缺陷构造训练，评价需缺陷标注；裁剪数据的源图独立性须另核查。",
+    "our_difference": "拟研究真实混合整图的缺陷类型聚类与空间注意力信息依赖；不把像素检测指标与 ARI/AMI/NMI 混排。",
+    "verification": "2026-11-23 当前浏览器经机构权限打开出版社全文；核对 §3.1–3.5 与表 1–3；非逐字全文精读。此前自动网页访问 403。",
+    "evidence": "https://www.sciencedirect.com/science/article/pii/S1526612526000794#s0090",
     "verified_date": "2026-11-23",
-    "core_review": true
+    "core_review": true,
+    "organization_status": "已完成基础整理",
+    "organization_scope": "已记录现有书目信息、任务、数据、方法、指标、局限和本研究关系；此状态不代表全文精读或全部实验细节已核验。",
+    "further_access": "按实际研究需要与权限核验；不擅自宣称全文精读。",
+    "reading_depth": "出版社全文可访问；已核对指定数据/实验章节及表格，尚未逐字全文精读。"
   }
 ]
