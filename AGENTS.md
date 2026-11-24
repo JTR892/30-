@@ -11,7 +11,7 @@ Study whether a spatial-attention branch changes self-supervised representation 
 - Before splitting, audit readability, explicit folder-to-label mapping, SHA256 exact duplicates, and conflicting labels.
 - Same-content/same-label files may be deterministically collapsed and logged. Same-content/different-label files are a hard failure. Hashes do not detect all near-duplicates.
 - XML validation is optional follow-up, not a main-experiment gate.
-- Raw images, local paths, label maps, and local manifests must stay outside public Git.
+- Raw images, local paths, label maps, local manifests, test labels, checkpoints and reports must stay outside public Git.
 
 ## Label-use boundary
 - Use labels for one stratified image-level 80/10/10 train/calibration/test partition; disclose this.
@@ -32,11 +32,18 @@ Study whether a spatial-attention branch changes self-supervised representation 
 - Never invent counts, paths, metrics, citations, logs, or completion status.
 
 ## Entrypoints
-- Audit: python -m weldstudy.audit --root /actual/binary_dataset --label-map config/label_map.local.json --out reports/audit
-- Split: python -m weldstudy.split --manifest reports/audit/manifest.csv --out data/splits --seed 17
-- Gate: python -m weldstudy.protocol --config config/protocol.json
-- Tests: python -m unittest discover -s tests -v
-- Manuscript: paper/main.tex; build with latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex in paper/.
+- Install: `make install`
+- Audit: `make audit DATA_ROOT=/actual/binary_dataset`
+- Split: `make split`
+- MPS environment: `make environment`
+- Synthetic MPS smoke: install `requirements-mps.txt`, then `make mps-smoke`
+- Gate: `python -m weldstudy.protocol --config config/protocol.json`
+- Tests: `make test` or `python -m unittest discover -s tests -v`
+- Manuscript: `make paper` or run latexmk in `paper/`
+- GitHub CI: `.github/workflows/ci.yml` runs tests and LaTeX compilation on GitHub-hosted runners.
 
 ## Change control
-Synthetic tests do not validate real data/model performance. Before final training freeze split and label-map hashes, preprocessing, training parameters, K=2, checkpoint rule, analysis plan hash, and code version. Test labels are opened only after freeze.
+Synthetic tests do not validate real data/model performance. MPS synthetic throughput is not SimCLR throughput. Before final training freeze split and label-map hashes, preprocessing, training parameters, K=2, checkpoint rule, analysis plan hash, and code version. Test labels are opened only after freeze. The full SimCLR/attention trainer is not yet implemented; do not claim model training is available until it exists and passes tests.
+
+## Security
+The repository is public. Do not configure a self-hosted M1 runner for untrusted pull-request workflows. Keep real data and local execution on the workstation; do not upload raw data or private manifests as workflow artifacts.

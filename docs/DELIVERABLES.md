@@ -4,9 +4,9 @@
 |---|---|---|
 | 研究问题、数据、方法、指标、风险 | RESEARCH_BRIEF.md、ANALYSIS_PLAN.md | 两个核心问题；已知 K=2、标签隔离和图像级划分限制明确；无真实发现 |
 | GitHub骨架与 AGENTS | README、AGENTS、protocol | 审计/标签映射/重复检查/图像级划分/协议门槛已实现；训练代码未实现 |
-| LaTeX骨架 | paper/main.tex、references.bib | 已按裁剪图像与二分类更新；通用模板，结果占位 |
-| 相关工作 | RELATED_WORK、literature.json、LITERATURE_ACCESS | 保留12篇核心与19条总台账，阅读深度如实记录 |
-| 数据/算力/语料 | RESOURCES.md | 目标数据由研究者确认；真实数量、许可、MPS吞吐待核 |
-| 里程碑 | MILESTONES.md | 12/17目标倒排；日期为计划 |
+| 自动化测试 | .github/workflows/ci.yml | 已配置 Python 多版本合成测试与 DRAFT 门槛检查；等待首次运行结果 |
+| LaTeX构建 | .github/workflows/ci.yml、paper/main.tex | 已配置 XeLaTeX 云端编译与 PDF artifact；等待首次运行结果 |
+| 真实数据与算力 | docs/LOCAL_EXECUTION.md、mps_smoke.py | 本地审计与 MPS 合成 smoke 工具已准备；真实数据和 M1 Max 尚未执行 |
+| 正式训练与分析 | docs/TRAINING_IMPLEMENTATION_PLAN.md | SimCLR/Attention 训练器尚未实现，参数未冻结，不得声称已训练 |
 
-合成测试只验证代码逻辑，不代表真实数据或模型效果。DRAFT协议应拒绝正式训练。
+合成测试只验证代码逻辑，不代表真实数据或模型效果。MPS smoke 使用随机合成图像，不代表真实训练吞吐。DRAFT协议应拒绝正式训练。

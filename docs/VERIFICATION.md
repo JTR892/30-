@@ -1,20 +1,34 @@
 # 验证记录 v0.3 · 2026-11-24
 
-本次源码更新已提交至 GitHub。当前会话未取得本地15,194张原始图像，故不声称完成真实数据验证。
+## GitHub 云端 CI
+工作流：`.github/workflows/ci.yml`。每次 push 到 main、面向 main 的 pull request 或手动触发时运行。
+- Python 3.10/3.11/3.12/3.13 合成测试；
+- 确认当前 DRAFT 协议会阻止正式训练；
+- XeLaTeX 编译 `paper/main.tex`，成功后上传 PDF artifact。
 
-| 项目 | 状态 | 说明 |
+本次提交后首次运行结果尚待 GitHub Actions 完成；不得在结果返回前标记为通过。运行链接：`https://github.com/JTR892/30-/actions`。
+
+## 必须在本地完成的验证
+| 项目 | 状态 | 验证方式 |
 |---|---|---|
-| 合成审计/划分测试 | 已更新，需在本地执行 | 仅验证目录映射、SHA256去重、冲突拒绝、图像级分层、嵌套子集与标签隔离 |
-| DRAFT协议门槛 | 应拒绝正式训练，需本地执行 | 不代表模型已就绪 |
-| 真实数据审计 | 未执行 | 数量、可读性、类别、重复未知 |
-| MPS smoke test | 未执行 | 吞吐与峰值内存未知 |
-| 模型训练/分析 | 未实现/未执行 | 无性能结果 |
-| LaTeX编译 | 本次未编译 | 需本地运行 latexmk 并检查PDF |
+| 真实数据审计 | 未执行 | `make audit DATA_ROOT="/实际数据路径"` |
+| 数据划分 | 未执行 | `make split`；检查数量、比例、标签隔离和报告 |
+| M1 Max MPS 环境 | 未执行 | `make environment` |
+| 合成数据 MPS 冒烟测试 | 脚本已加入，未执行 | 安装 `requirements-mps.txt` 后运行 `make mps-smoke` |
+| SimCLR/Attention 正式训练 | 尚未实现 | 训练器与参数冻结前不得启动 |
+| 真实实验分析 | 未执行 | 训练与聚类代码完成后执行 |
 
-本地运行：
+真实数据、路径、label map、split manifests、测试标签、检查点和训练日志不得上传公开 GitHub。CI 不读取这些本地文件，也不访问用户的 M1 Max。
+
+## 本地命令
 ```sh
-python -m unittest discover -s tests -v
-python -m weldstudy.protocol --config config/protocol.json
-cd paper && latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
+make install
+make test
+make paper
+make audit DATA_ROOT="/实际数据路径"
+make split
+python -m pip install -r requirements-mps.txt
+make environment
+make mps-smoke
 ```
 DRAFT协议检查返回非零为预期。真实数据、许可、MPS、测试标签锁定和参数冻结前，不得将协议改为 FROZEN。

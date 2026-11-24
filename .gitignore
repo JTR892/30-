@@ -10,11 +10,17 @@ data/splits/
 !data/manifests/schema.csv
 config/paths.local.json
 config/pilot.local.json
+config/label_map.local.json
+config/training.local.json
+.env.local
 data/metadata/
 reports/analysis/
 reports/*.local.json
 reports/audit/
+reports/local/
+reports/private/
 runs/
+checkpoints/
 *.pt
 *.pth
 *.ckpt
@@ -30,6 +36,4 @@ paper/*.fls
 paper/*.fdb_latexmk
 paper/*.synctex.gz
 paper/main.pdf
-
-
 paper/*.xdv
