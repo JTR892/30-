@@ -2,11 +2,11 @@
 
 **状态：已通过。**  
 **核验日期：2026-11-25**  
-**源代码提交：** `53f33b2289993f9b0a5ba5653e19529a64b17578`  
-**GitHub Actions运行：** [45462673176](https://github.com/JTR892/30-/actions/runs/45462673176)  
-**Artifact：** `manuscript-pdf`，ID `14954220922`  
+**源代码提交：** `b297bdfc5ae1fb6540b0e022ce3ecd938843c12b`  
+**GitHub Actions运行：** [45463591307](https://github.com/JTR892/30-/actions/runs/45463591307)  
+**Artifact：** `manuscript-pdf`，ID `14952824515`  
 **PDF：** `paper/main.pdf`，3页，A4，PDF 1.7  
-**本次已下载PDF SHA-256：** `605788d9fdc298fb681590ca7285bbfb30d8e066279370f2bd5903f9facc17b1`
+**本次已下载PDF SHA-256：** `7790d096b2a30c32e3b4be02966d0599d54de6668f2151f31717156fbc18f7fc`
 
 ## 验收结果
 
@@ -39,6 +39,6 @@
 ## 交付说明
 
 - PDF通过GitHub Actions Artifact提供，不把CI构建产物误称为真实实验结果。
-- Artifact保留期限在后续CI配置中设为90天；已完成的本次Artifact仍按运行时原有保留期限管理。
+- 本次Artifact保留90天；下载后的PDF文本及三页渲染图与前一次已人工检查版本逐页一致。
 - 这份PDF是论文结构骨架，不是论文初稿或实验结果。结果表保留占位符，未编造任何指标。
 - CI成功只证明软件测试和论文构建通过；不证明真实数据审计、M1 Max模型训练或聚类实验已完成。
