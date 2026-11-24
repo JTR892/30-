@@ -1,69 +1,63 @@
-"""Deterministic group partitions and nested subsets; no label-guided sampling."""
-import argparse
-import csv
-import json
-import random
+"""Image-level stratified split; labels are isolated from model-facing manifests."""
+import argparse,csv,json,random
+from collections import Counter,defaultdict
 from pathlib import Path
+LABELS=("defect","no_defect")
+IMAGE_FIELDS=["image_id","image_path","sha256"]
 
 def read_csv(path):
-    with Path(path).open(encoding="utf-8-sig", newline="") as f:
-        return list(csv.DictReader(f))
+    with Path(path).open(encoding="utf-8-sig",newline="") as f: return list(csv.DictReader(f))
+def write_csv(path,fields,rows):
+    with Path(path).open("w",encoding="utf-8-sig",newline="") as f:
+        w=csv.DictWriter(f,fieldnames=fields); w.writeheader(); w.writerows(rows)
 
-def make_splits(manifest, group_file, out, seed=17, partition_seed=20261122):
-    rows, mapped = read_csv(manifest), read_csv(group_file)
-    groups = {}
-    for r in mapped:
-        if not r.get("image_id") or not r.get("group_id"):
-            raise ValueError("Group mapping has missing image_id/group_id")
-        if r["image_id"] in groups:
-            raise ValueError("Duplicate image_id in group mapping")
-        groups[r["image_id"]] = r["group_id"]
-    if not rows or len({r["image_id"] for r in rows}) != len(rows):
-        raise ValueError("Empty manifest or duplicate image_id")
+def make_splits(manifest,out,seed=17,partition_seed=20261122):
+    rows=read_csv(manifest)
+    if not rows or len({r.get("image_id") for r in rows})!=len(rows): raise ValueError("Empty manifest or duplicate image IDs")
     for r in rows:
-        if r["quality_status"] != "READABLE":
-            raise ValueError("Resolve/exclude unreadable and multiframe images in a documented audited manifest first")
-        if not r.get("sha256") or r["image_id"] not in groups:
-            raise ValueError("Every image requires a content hash and verified group mapping")
-    hash_groups = {}
-    for r in rows:
-        group = groups[r["image_id"]]
-        if r["sha256"] in hash_groups and hash_groups[r["sha256"]] != group:
-            raise ValueError("Exact duplicate content spans groups: merge connected provenance components before splitting")
-        hash_groups[r["sha256"]] = group
-    # Drop exact duplicates deterministically; record them. Near duplicates remain a human audit requirement.
-    unique, seen, removed = [], set(), []
-    for r in sorted(rows, key=lambda r: r["image_id"]):
-        if r["sha256"] in seen: removed.append(r["image_id"])
-        else: unique.append(r); seen.add(r["sha256"])
-    keys = sorted({groups[r["image_id"]] for r in unique})
-    if len(keys) < 10:
-        raise ValueError("At least 10 independent groups required for this 80/10/10 scaffold; redesign if fewer")
-    random.Random(partition_seed).shuffle(keys)
-    ntest = max(1, round(len(keys) * .1)); ncal = ntest
-    test, cal, train = keys[:ntest], keys[ntest:ntest+ncal], keys[ntest+ncal:]
+        if r.get("quality_status")!="READABLE": raise ValueError("Resolve unreadable/multiframe images before split")
+        if r.get("binary_label") not in LABELS: raise ValueError("Every image needs explicit defect/no_defect label mapping")
+        if not r.get("sha256"): raise ValueError("Every image needs SHA256")
+    hashes=defaultdict(list)
+    for r in rows: hashes[r["sha256"]].append(r)
+    unique=[]; removed=[]
+    for digest,group in hashes.items():
+        if len({r["binary_label"] for r in group})>1: raise ValueError("Exact duplicate content has conflicting binary labels; review before split")
+        group=sorted(group,key=lambda r:r["image_id"]); unique.append(group[0]); removed.extend(x["image_id"] for x in group[1:])
+    pools={label:[] for label in LABELS}
+    for r in unique: pools[r["binary_label"]].append(r)
+    train,cal,test=[],[],[]
+    for i,label in enumerate(LABELS):
+        group=list(pools[label])
+        if len(group)<10: raise ValueError(f"Too few unique readable images in class {label}")
+        random.Random(partition_seed+i).shuffle(group)
+        nt=max(1,round(.1*len(group))); nc=max(1,round(.1*len(group)))
+        test.extend(group[:nt]); cal.extend(group[nt:nt+nc]); train.extend(group[nt+nc:])
     random.Random(seed).shuffle(train)
-    sets = {"test": set(test), "calibration": set(cal), "train_100": set(train),
-            "train_50": set(train[:max(1, round(len(train)*.5))]),
-            "train_10": set(train[:max(1, round(len(train)*.1))])}
-    out = Path(out); out.mkdir(parents=True, exist_ok=True)
-    counts = {}
-    for name, selected in sets.items():
-        selected_rows = [{"image_id": r["image_id"], "image_path": r["image_path"], "sha256": r["sha256"], "group_id": groups[r["image_id"]]} for r in unique if groups[r["image_id"]] in selected]
-        with (out / f"{name}.csv").open("w", newline="", encoding="utf-8-sig") as f:
-            w = csv.DictWriter(f, fieldnames=["image_id", "image_path", "sha256", "group_id"]); w.writeheader(); w.writerows(selected_rows)
-        counts[name] = {"groups": len(selected), "images": len(selected_rows)}
-    report = {"subset_seed": seed, "partition_seed": partition_seed, "ratio_unit": "independent groups, not exact image counts", "counts": counts,
-              "removed_exact_duplicate_image_ids": removed,
-              "limitations": "Only supplied provenance and exact file hashes checked; near-duplicates and group semantics need review"}
-    (out / "split_report.json").write_text(json.dumps(report, indent=2))
+    sets={"train_10":train[:max(1,round(.1*len(train)))],"train_50":train[:max(1,round(.5*len(train)))],
+          "train_100":train,"calibration":cal,"test":test}
+    out=Path(out); out.mkdir(parents=True,exist_ok=True)
+    for name,selected in sets.items():
+        write_csv(out/f"{name}.csv",IMAGE_FIELDS,[{k:r[k] for k in IMAGE_FIELDS} for r in sorted(selected,key=lambda x:x["image_id"])])
+    write_csv(out/"test_labels.locked.csv",["image_id","binary_label"],
+              [{"image_id":r["image_id"],"binary_label":r["binary_label"]} for r in sorted(test,key=lambda x:x["image_id"])])
+    counts={n:{"images":len(v),"classes":dict(Counter(r["binary_label"] for r in v))} for n,v in sets.items()}
+    report={"partition_seed":partition_seed,"training_subset_seed":seed,"split_unit":"image",
+      "partition_strategy":"label-stratified 80/10/10; disclose stratification",
+      "training_subset_strategy":"nested random sampling within train; label-blind",
+      "counts":counts,"unique_images_after_exact_deduplication":len(unique),
+      "removed_exact_duplicate_count":len(removed),"removed_exact_duplicate_image_ids":sorted(removed),
+      "test_labels_file":"test_labels.locked.csv","model_manifests_include_labels":False,
+      "original_film_or_weld_grouping":"NOT_PERFORMED",
+      "limitations":["Image-level split does not establish original-film/weld independence.",
+        "SHA256 does not detect all near-duplicates or crops from shared sources.",
+        "Labels are used for partition stratification, not representation training or K-means."]}
+    (out/"split_report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
     return report
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument("--manifest",required=True); p.add_argument("--groups",required=True); p.add_argument("--out",required=True); p.add_argument("--seed",type=int,default=17)
-    a=p.parse_args()
-    try: print(json.dumps(make_splits(a.manifest,a.groups,a.out,a.seed),indent=2))
-    except (ValueError, KeyError, FileNotFoundError) as e: p.exit(2,str(e)+"\n")
-
-if __name__ == "__main__": main()
-
+    p=argparse.ArgumentParser();p.add_argument("--manifest",required=True);p.add_argument("--out",required=True)
+    p.add_argument("--seed",type=int,default=17);p.add_argument("--partition-seed",type=int,default=20261122);a=p.parse_args()
+    try: print(json.dumps(make_splits(a.manifest,a.out,a.seed,a.partition_seed),ensure_ascii=False,indent=2))
+    except (ValueError,KeyError,FileNotFoundError) as e:p.exit(2,str(e)+"\n")
+if __name__=="__main__":main()

@@ -1,7 +1,7 @@
 {
-  "dongguo_root": null,
-  "group_mapping": null,
-  "annotation_schema": null,
+  "binary_dataset_root": null,
+  "label_map": "config/label_map.local.json",
+  "audit_output": "reports/audit",
+  "split_output": "data/splits",
   "status": "WAITING_FOR_USER_DATA"
 }
-

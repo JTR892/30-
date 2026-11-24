@@ -1,24 +1,20 @@
-# 七天验收与 2026-12-17 整稿计划 v0.2
+# 七天验收与 2026-12-17 整稿计划 v0.3
 
-Dates use Asia/Shanghai. The first-day kickoff package is delivered; later dates below are a plan, not a record of completed experiments. Raw data availability is a critical dependency.
+日期为计划，不代表已完成。
 
-| Date | Reviewable artifact | Acceptance condition |
+| 日期 | 验收产物 | 标准 |
 |---|---|---|
-| 2026-11-22 | 六项材料 v0.2、三层分析与论文骨架 | 问题/证据/代码状态一致；结果占位；合成测试和编译通过 |
-| 2026-11-23 | 真实 manifest 与语义证据可得性表 | 目录到位；类别、位置、形态、来源、设备、曝光缺失逐项记录 |
-| 2026-11-24 | 类别字典、来源组、固定划分和独立预实验协议 | 无组跨区；测试隔离；训练侧标注格式与诊断范围核验；预实验范围先冻结 |
-| 2026-11-25 | 合成 MPS 前反向、训练侧尺寸/batch 与扰动样例 | 同步计时、内存；无静默 CPU 回退；缺陷可见性与扰动人工痕迹核验 |
-| 2026-11-26 | 两模型可比性、特征/门控导出、分析代码合成验证 | 公共权重一致；几何、来源、区域诊断输入/输出定义；实现状态单列 |
-| 2026-11-27 | 四组短学习预实验、固定特征参照、三层分析试运行 | 只用训练/校准；检查坍缩、计算量和分析可估计性；测试标签未开启 |
-| 2026-11-28 | 最终配置/三层分析冻结、资格报告与预算 | 主效应、距离/kNN/稳定性/扰动参数和规范哈希；门槛通过后选 30 或探索性 18 次 |
-| 2026-11-29–30 | Clean-environment rerun and recovery instructions | Pipeline produces traceable artifacts |
-| 2026-12-01–08 | Full paired experiment matrix | Preserve all seeds and failures under frozen protocol |
-| 2026-12-09–10 | 三层证据表：ARI/AMI/NMI、几何/稳定性、来源及合资格扰动 | 按冻结计划解封评价；不拟合/调参；报告来源与分析覆盖及两类不确定性 |
-| 2026-12-11–13 | 按问题—方法—真实发现—解释组织完整初稿 | 结果对应真实日志；区域/几何/来源证据核对，不预设正效应 |
-| 2026-12-14–15 | Targeted supplementary analyses and revision | Mark new analyses exploratory; retain primary results |
-| 2026-12-16 | Final integrity/reproducibility review | Check references, leakage, numbers and figures |
-| 2026-12-17 | Final manuscript and reproducibility package | Submit only the actually completed research scope |
+| 11/24 | v0.3 研究协议和代码骨架 | 裁剪图像、二分类、图像级划分、已知 K=2 |
+| 11/25 | 15,194 张目标数据只读审计 | 实际数量、可读性、尺寸/模式、类别、SHA256重复/冲突 |
+| 11/26 | 固定 train/calibration/test 划分 | 80/10/10分层；模型清单无标签；测试标签独立锁定 |
+| 11/27 | 数据加载与预处理测试 | 灰度/位深可追溯；等比例缩放/填充；增强保留小缺陷 |
+| 11/28 | M1 Max MPS短训练预算 | 速度、batch、峰值内存，无静默CPU回退 |
+| 11/29-30 | 四组短预实验 | 10/100% × 两模型；不访问测试标签 |
+| 12/01 | 冻结正式协议 | 参数、split/label-map哈希、K、分析规则、checkpoint |
+| 12/02-09 | 正式配对训练 | 目标30次；资源不足18次探索性；保留失败日志 |
+| 12/10-11 | 聚类/几何分析 | ARI/AMI/NMI、类内/类间、kNN、稳定性 |
+| 12/12-15 | 论文初稿 | 结果对应日志，披露图像级划分限制 |
+| 12/16 | 完整性复核 | 数据、代码、图表、引用、随机种子、负结果 |
+| 12/17 | 论文与复现材料 | 仅提交已完成且可复核的研究范围 |
 
-If the data gate is not met by November 24, revise scope and dates rather than inventing a complete experimental paper. A null or negative effect remains reportable; no publication acceptance is promised.
-
-三层诊断主要复用模型，但须单列后处理与人工核验预算。缺少语义证据时收缩题目/解释；不能把预定机制分析全部推迟到看结果后再挑选。
+XML核验是并行扩展，不是主实验门槛。若数据标签或使用许可未确认，顺延实验，不得假定通过。

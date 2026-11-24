@@ -1,40 +1,42 @@
-# Research agreement
+# Research agreement v0.3
 
 ## Objective
-Study how spatial attention affects whole-image weld radiograph clustering through three linked questions: clustering performance, representation geometry, and reliance on defect information versus acquisition/source cues. Vary unlabeled target-domain training size as a controlled experimental factor. This is an empirical study, not a claim of a new attention mechanism or an established causal explanation.
+Study whether a spatial-attention branch changes self-supervised representation and known-K unsupervised clustering of cropped weld radiographs as unlabeled training size changes. The target dataset is the team's existing 15,194-image binary DR_SD crop dataset, associated by the researcher with the dataset used in Wang et al. (2025). This is a target count, not an audited on-disk count.
 
-## Evidence rules
-- Never invent data counts, paths, metrics, citations, training logs or GitHub publication status.
-- Distinguish observed facts, literature claims, design decisions and hypotheses.
-- Raw industrial images and user-supplied literature PDFs must remain outside Git.
-- No training, PCA, K-means fitting, checkpoint selection or hyperparameter tuning on final test images or labels.
-- Same weld/source-film/duplicate component must stay in one partition. Unknown labels are not normal labels.
-- No defect labels in representation training or main training-subset selection. Any supervised pretraining must be disclosed.
-- Preserve unfavorable and null results. Never write results sections from expected effects.
-- Geometry, attention overlap and perturbation responses are different evidence levels. Heatmaps and metric correlations alone do not establish a causal mechanism. Missing exposure records must not be replaced by mean gray level and called measured exposure.
+## Data contract
+- Observation unit: one cropped weld-region X-ray image, not a full film or a defect box.
+- Labels: defect / no_defect.
+- Original-film, weld-ID, and source-group mapping are not required.
+- Do not claim film-level independence or unseen-film generalization. Image-level splitting may place related crops in different partitions.
+- Before splitting, audit readability, explicit folder-to-label mapping, SHA256 exact duplicates, and conflicting labels.
+- Same-content/same-label files may be deterministically collapsed and logged. Same-content/different-label files are a hard failure. Hashes do not detect all near-duplicates.
+- XML validation is optional follow-up, not a main-experiment gate.
+- Raw images, local paths, label maps, and local manifests must stay outside public Git.
 
-## Paths
-- Workspace root: this repository.
-- Raw industrial radiograph dataset: **not supplied**. Set `config/paths.local.json` after receipt; do not invent a path.
-- Audit outputs: local `reports/audit/`; schema: `data/manifests/schema.csv`.
-- Group mapping: a locally supplied CSV with `image_id,group_id`, based on verified acquisition/weld provenance.
-- Protocol: `config/protocol.json`; local environment probe: `reports/environment.local.json`.
-- Research charter and six-item acceptance: `docs/RESEARCH_BRIEF.md` and `docs/DELIVERABLES.md`.
-- Geometry/semantic analysis definitions: `docs/ANALYSIS_PLAN.md`; evidence availability: `docs/RESOURCES.md`.
-- Manuscript: `paper/main.tex`; bibliography: `paper/references.bib` (generic article skeleton, not an official journal template).
-- Paper build: `latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex` in `paper/`.
+## Label-use boundary
+- Use labels for one stratified image-level 80/10/10 train/calibration/test partition; disclose this.
+- Train/calibration/test image manifests must not contain labels. Store test labels separately and lock them.
+- Representation training reads pixels only. Training-size subsets are random nested samples from train, not label-stratified.
+- Labels are not used for representation training, subset selection, checkpoint/hyperparameter selection, K-means fitting, or cluster assignment.
+- Labels are used for final ARI/AMI/NMI and class-conditional descriptive analyses only.
+- Primary K=2 is specified by the known binary task. Disclose known-K unsupervised clustering; do not give labels or cluster-class mapping to K-means.
 
-## Implemented code entrypoints
-- `python -m weldstudy.environment --out reports/environment.local.json`
-- `python -m weldstudy.audit --root /actual/data/root --out reports/audit`
-- `python -m weldstudy.split --manifest reports/audit/manifest.csv --groups /actual/groups.csv --out data/splits`
-- `python -m weldstudy.protocol --config config/protocol.json`
-- `python -m unittest discover -s tests -v`
+## Model and evidence
+- Baseline: ResNet18 + SimCLR.
+- Attention: same setup plus one CBAM spatial branch; do not call it full CBAM or a new attention method.
+- Disclose ImageNet supervised pretraining if used.
+- Same paired images, initialization policy, update budget, batch, optimizer, schedule, and augmentation for both variants.
+- Report actual counts, repeat exposures, wall time, memory, all seeds, failures and negative results.
+- Silhouette/stability/heatmaps alone do not prove defect semantics or causality.
+- Image-level split plus exact deduplication does not establish source-film independence.
+- Never invent counts, paths, metrics, citations, logs, or completion status.
 
-Model training and geometry/semantic analysis are not implemented at this stage. Do not describe this scaffold as a completed or validated SimCLR pipeline. Before implementing a data-dependent pilot, audit the data and freeze a separate pilot protocol with test access prohibited. Minimal synthetic MPS smoke tests and synthetic software checks may precede that freeze. Use training/calibration evidence from pilots to specify the final protocol; freeze the final protocol before final runs or opening test labels. The current CLI gates the final protocol only and does not authorize pilots.
+## Entrypoints
+- Audit: python -m weldstudy.audit --root /actual/binary_dataset --label-map config/label_map.local.json --out reports/audit
+- Split: python -m weldstudy.split --manifest reports/audit/manifest.csv --out data/splits --seed 17
+- Gate: python -m weldstudy.protocol --config config/protocol.json
+- Tests: python -m unittest discover -s tests -v
+- Manuscript: paper/main.tex; build with latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex in paper/.
 
-## Verification and change control
-Run relevant tests after changing audit/split semantics. Test fixtures are synthetic and cannot establish real data availability or model performance. Keep label taxonomy, exclusions, seeds, cluster-count rule and protocol version in an audit trail. Any post-test changes must be labeled exploratory and must not overwrite the frozen primary analysis.
-
-Every literature update must be synchronized to the authorized GitHub repository, including the literature registry, relevant comparison table, bibliography or manuscript as applicable. Verify the remote commit and report any sync failure. Record organization status separately from actual access and reading depth; never describe abstract-only work as full-text review. For L06 and L13–L17, retain existing records and do not revisit the papers solely for further verification unless the user changes this instruction.
-
+## Change control
+Synthetic tests do not validate real data/model performance. Before final training freeze split and label-map hashes, preprocessing, training parameters, K=2, checkpoint rule, analysis plan hash, and code version. Test labels are opened only after freeze.

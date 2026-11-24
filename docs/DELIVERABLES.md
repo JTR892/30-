@@ -1,14 +1,12 @@
-# 六项交付与验收 v0.2 · 2026-11-22
+# 六项交付与验收 v0.3 · 2026-11-24
 
-本版随研究主线修订。旧本地 DOCX/PDF/XLSX 和旧提交仍是 v0.1 历史快照，本次不覆盖或声称已重制；GitHub 的当前研究约定以本版源码为准。具体提交以 Git 历史为准，不在各表手填互相矛盾的短哈希。
-
-| 六项要求 | 当前材料 | 本版验收内容与未完成项 |
+| 要求 | 当前材料 | 状态 |
 |---|---|---|
-| 1. 问题、数据、方法、指标、三条发现、风险 | [研究任务书](RESEARCH_BRIEF.md)、[分析计划](ANALYSIS_PLAN.md) | 三项待检验问题；指标/对照/证据要求完整；尚无实验发现 |
-| 2. GitHub 骨架与 AGENTS.md | [README](../README.md)、[AGENTS](../AGENTS.md)、[协议](protocol.md) | 审计/划分/最终协议检查器已实现；训练和三层分析代码待实现 |
-| 3. 可编译 LaTeX 骨架 | [main.tex](../paper/main.tex)、[references.bib](../paper/references.bib) | 工作题目、摘要占位、章节、流程占位图和引用；编译状态见验证记录，未填结果 |
-| 4. 8–12 篇相关工作 | [核心 12 篇表](RELATED_WORK.md)、[19 条总台账](literature.json)、[整理与访问状态](LITERATURE_ACCESS.md) | 19 条已基础整理；元数据可访问不等于全文精读 |
-| 5. 数据、算力、语料可得性 | [资源核验](RESOURCES.md) | 原始数据、来源、位置/形态/采集元数据与模型吞吐仍待核，不能标全项完成 |
-| 6. 七天产物和 12/17 整稿计划 | [里程碑](MILESTONES.md) | 正式评价前冻结三层分析；日期为条件性计划，后续产物尚未执行 |
+| 研究问题、数据、方法、指标、风险 | RESEARCH_BRIEF.md、ANALYSIS_PLAN.md | 两个核心问题；已知 K=2、标签隔离和图像级划分限制明确；无真实发现 |
+| GitHub骨架与 AGENTS | README、AGENTS、protocol | 审计/标签映射/重复检查/图像级划分/协议门槛已实现；训练代码未实现 |
+| LaTeX骨架 | paper/main.tex、references.bib | 已按裁剪图像与二分类更新；通用模板，结果占位 |
+| 相关工作 | RELATED_WORK、literature.json、LITERATURE_ACCESS | 保留12篇核心与19条总台账，阅读深度如实记录 |
+| 数据/算力/语料 | RESOURCES.md | 目标数据由研究者确认；真实数量、许可、MPS吞吐待核 |
+| 里程碑 | MILESTONES.md | 12/17目标倒排；日期为计划 |
 
-源码变更后的检查见 [验证记录](VERIFICATION.md)：合成夹具测试、DRAFT 必须拒绝正式训练、BibTeX/台账键一致性、LaTeX 编译与图页目检。任何验证仅支持其实际范围，不代表真实数据或模型效果已验证。
+合成测试只验证代码逻辑，不代表真实数据或模型效果。DRAFT协议应拒绝正式训练。

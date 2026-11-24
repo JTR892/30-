@@ -1,43 +1,19 @@
-"""Final-stage contract tests; no model or real-data validation."""
-import json
-import unittest
+"""Synthetic v0.3 final-gate tests."""
+import json,unittest
 from pathlib import Path
-
 from weldstudy.protocol import issues
-
-
 class ProtocolGateTests(unittest.TestCase):
-    def completed_contract(self):
-        # This fixture describes an administratively complete contract only.
-        config = json.loads((Path(__file__).resolve().parents[1] / 'config/protocol.json').read_text())
-        config.update(status='FROZEN', version='0.2', max_steps=10, batch_size=2,
-                      input_size=32, optimizer='fixture', learning_rate=0.01,
-                      temperature=0.1, weight_decay=0, augmentation_spec='fixture',
-                      pretrained_weights_sha256='a' * 64, cluster_k=2,
-                      group_audit_passed=True, mps_training_smoke_passed=True,
-                      test_labels_locked=True, analysis_spec_frozen=True,
-                      semantic_evidence_audited=True, analysis_spec_sha256='b' * 64,
-                      semantic_analysis_scope='No location metadata; source diagnostics only')
-        return config
-
-    def test_unfrozen_analysis_rejects_otherwise_complete_final_contract(self):
-        config = self.completed_contract()
-        config['analysis_spec_frozen'] = False
-        self.assertIn('Gate not passed: analysis_spec_frozen', issues(config))
-
-    def test_missing_evidence_audit_rejects_final_contract(self):
-        config = self.completed_contract()
-        config['semantic_evidence_audited'] = False
-        self.assertIn('Gate not passed: semantic_evidence_audited', issues(config))
-
-    def test_unavailable_location_analysis_can_be_explicitly_scoped(self):
-        self.assertEqual(issues(self.completed_contract()), [])
-
-    def test_legacy_contract_cannot_bypass_new_analysis_gates(self):
-        config = self.completed_contract()
-        config['version'] = '0.1'
-        self.assertTrue(any('Unsupported protocol version' in p for p in issues(config)))
-
-
-if __name__ == '__main__':
-    unittest.main()
+ def fixture(self):
+  c=json.loads((Path(__file__).resolve().parents[1]/"config/protocol.json").read_text())
+  c.update(version="0.3",status="FROZEN",max_steps=10,batch_size=2,input_size=32,optimizer="x",learning_rate=.01,temperature=.1,weight_decay=0,augmentation_spec="x",pretrained_weights_sha256="a"*64,analysis_spec_sha256="b"*64,split_manifest_sha256="c"*64,checkpoint_rule="last",cluster_k=2,source_film_mapping_required=False)
+  for k in ["dataset_audit_passed","binary_label_map_verified","exact_duplicate_audit_passed","usage_permission_confirmed","mps_training_smoke_passed","test_labels_locked","analysis_spec_frozen"]:c[k]=True
+  return c
+ def test_draft_rejected(self):self.assertTrue(issues({"version":"0.3-draft","status":"DRAFT"}))
+ def test_complete_fixture_passes(self):self.assertEqual(issues(self.fixture()),[])
+ def test_missing_gate_rejected(self):
+  c=self.fixture();c["binary_label_map_verified"]=False
+  self.assertIn("Gate not passed: binary_label_map_verified",issues(c))
+ def test_wrong_k_rejected(self):
+  c=self.fixture();c["cluster_k"]=3
+  self.assertIn("Primary experiment must use known K=2",issues(c))
+if __name__=="__main__":unittest.main()

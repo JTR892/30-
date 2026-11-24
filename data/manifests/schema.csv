@@ -1,1 +1,1 @@
-image_id,image_path,width,height,mode,format,sha256,quality_status,annotation_candidates,annotation_status,defect_classes,defect_count,group_id
+image_id,image_path,width,height,mode,format,sha256,quality_status,binary_label,label_source,annotation_candidates,annotation_status

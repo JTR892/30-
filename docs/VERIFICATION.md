@@ -1,18 +1,20 @@
-# v0.2 验证记录 · 2026-11-22
+# 验证记录 v0.3 · 2026-11-24
 
-| 检查 | 实际结果 | 支持范围 |
+本次源码更新已提交至 GitHub。当前会话未取得本地15,194张原始图像，故不声称完成真实数据验证。
+
+| 项目 | 状态 | 说明 |
 |---|---|---|
-| `python -m unittest discover -s tests -v` | 10 项通过 | 合成审计/来源划分与最终协议门槛；不代表真实数据或模型性能 |
-| DRAFT 配置检查 | 返回码 2，ready_for_training=false | 未填参数、数据/MPS/标签锁定和分析门槛均未冒充通过 |
-| 文献台账与 BibTeX | 17 个唯一键完全对应；正文引用键存在 | 引用完整性，不等于所有全文已读 |
-| 核心相关工作表 | 12 条，均有 DOI/arXiv，记录日期与深度 | 满足核心条目结构；L17 指标参考另以期刊卷页保留 |
-| Markdown 本地链接 | 检查通过 | 当前 README/docs 的相对链接目标存在 |
-| `latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex` | 成功，5 页；最终日志无未定义引用和 Overfull | 论文骨架可构建，不包含真实结果 |
-| PDF 排版 | PDFium 渲染五页总览及流程图页目检通过 | 中文/图中文字可见，无观察到的图中文字重叠；本机 Poppler 缺 Adobe-GB1 CMap，未将其空白渲染误称通过 |
-| `git diff --check` | 通过 | 未发现补丁空白错误 |
+| 合成审计/划分测试 | 已更新，需在本地执行 | 仅验证目录映射、SHA256去重、冲突拒绝、图像级分层、嵌套子集与标签隔离 |
+| DRAFT协议门槛 | 应拒绝正式训练，需本地执行 | 不代表模型已就绪 |
+| 真实数据审计 | 未执行 | 数量、可读性、类别、重复未知 |
+| MPS smoke test | 未执行 | 吞吐与峰值内存未知 |
+| 模型训练/分析 | 未实现/未执行 | 无性能结果 |
+| LaTeX编译 | 本次未编译 | 需本地运行 latexmk 并检查PDF |
 
-原始数据审计、MPS 训练、正式参数、三层分析实现与研究结果均未完成。仓库同步状态以实际 Git 历史和远端分支为准，本页不预填尚未生成的提交哈希。
-
-## 文献增补 · 2026-11-23
-
-新增 2 条后，台账与 BibTeX 共 19 个唯一对应键；核心比较表仍为 12 条。L18/L19 原始摘要/元数据经搜索索引核验、出版社直开 403，未称全文已读；L18 作者仓库文档可打开但未验证数据下载与使用许可。原 2026-11-22 的 17 条与 12 条计数属于当时的历史验证快照。
+本地运行：
+```sh
+python -m unittest discover -s tests -v
+python -m weldstudy.protocol --config config/protocol.json
+cd paper && latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
+```
+DRAFT协议检查返回非零为预期。真实数据、许可、MPS、测试标签锁定和参数冻结前，不得将协议改为 FROZEN。
