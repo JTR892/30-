@@ -61,11 +61,32 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y latexmk texlive-xetex texlive-latex-extra texlive-lang-chinese texlive-fonts-recommended fonts-lmodern
           sudo fc-cache -f
+      - name: Validate citation keys against bibliography
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          tex = Path("paper/main.tex").read_text(encoding="utf-8")
+          bib = Path("paper/references.bib").read_text(encoding="utf-8")
+          cited = {key.strip() for group in re.findall(r"\\cite\{([^}]+)\}", tex) for key in group.split(",")}
+          defined = set(re.findall(r"@\w+\s*\{\s*([^,\s]+)", bib))
+          missing = sorted(cited - defined)
+          print(f"Cited keys ({len(cited)}): {', '.join(sorted(cited))}")
+          print(f"Bibliography entries: {len(defined)}")
+          if missing:
+              raise SystemExit(f"Missing bibliography entries: {', '.join(missing)}")
+          PY
       - name: Compile manuscript
         working-directory: paper
         run: |
           latexmk -C
-          latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
+          latexmk -xelatex -file-line-error -interaction=nonstopmode -halt-on-error main.tex
+          test -s main.pdf
+          test -s main.bbl
+          if grep -E "Citation .* undefined|There were undefined references" main.log; then
+            echo "Unresolved citation/reference warning found in main.log"
+            exit 1
+          fi
       - name: Upload compiled PDF
         uses: actions/upload-artifact@v7
         with:

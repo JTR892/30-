@@ -59,7 +59,7 @@ ARI为主要外部指标；AMI、NMI为辅助外部指标\cite{vinh2010informati
 \Delta_s(r)=ARI_{\mathrm{attention},s}(r)-ARI_{\mathrm{baseline},s}(r),
 \quad C_s=\Delta_s(10\%)-\Delta_s(100\%).
 \end{equation}
-C_s为正表示注意力的相对ARI收益在10\%训练规模下比100\%更大，不代表注意力在10\%时必然优于基线。次要汇总为三个规模下\Delta_s的平均值。报告所有种子和各规模原始结果。
+$C_s$为正表示注意力的相对ARI收益在10\%训练规模下比100\%更大，不代表注意力在10\%时必然优于基线。次要汇总为三个规模下$\Delta_s$的平均值。报告所有种子和各规模原始结果。
 
 \section{实验设计}
 训练规模10\%、50\%、100\%均为train划分内部比例。主比较拟固定batch和optimizer steps；小子集因此会被重复采样更多次，空间分支也会增加计算量。记录唯一图像数、图像曝光次数、墙钟时间、吞吐和峰值内存。固定steps不等于相同FLOPs、墙钟时间或图像曝光次数。
