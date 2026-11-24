@@ -37,12 +37,14 @@ Baseline为ResNet18+SimCLR\cite{he2016resnet,chen2020simclr}。Attention在相�
 \begin{equation}
 M_s(F)=\sigma(f^{7\times7}([\mathrm{Avg}_c(F);\mathrm{Max}_c(F)])),\quad F'=M_s(F)\odot F.
 \end{equation}
+
+主实验固定K-means的K=2。K来自已知二分类任务定义，而非模型发现；真实标签不提供给K-means，也不提供簇—类别映射。K-means仅在固定无标签聚类拟合集特征上拟合，测试样本按最近中心分配。
 \begin{figure}[ht]\centering
 \begin{tikzpicture}[node distance=6mm and 7mm,b/.style={draw,rounded corners,align=center,text width=27mm,minimum height=13mm,font=\small},a/.style={-{Stealth[length=2mm]},thick}]
 \node[b](d){15,194张目标图像\\只读审计去重};
 \node[b,right=of d](s){图像级分层\\80/10/10};
 \node[b,right=of s](t){train划分\\10/50/100\%};
-\node[b,right=of t](m){配对模型\\Baseline/Attention};
+\node[b,right=of t](m){配对模型\\Baseline\\Attention};
 \node[b,below=of m](f){冻结GAP特征\\L2归一化};
 \node[b,left=of f](k){聚类拟合集\\K-means K=2};
 \node[b,left=of k](e){锁定测试集\\最终评价};
@@ -50,7 +52,7 @@ M_s(F)=\sigma(f^{7\times7}([\mathrm{Avg}_c(F);\mathrm{Max}_c(F)])),\quad F'=M_s(
 \end{tikzpicture}
 \caption{图像级划分与已知簇数无监督聚类流程。测试标签仅在协议冻结后解封。}
 \end{figure}
-主实验固定K-means的K=2。K来自已知二分类任务定义，而非模型发现；真实标签不提供给K-means，也不提供簇—类别映射。K-means仅在固定无标签聚类拟合集特征上拟合，测试样本按最近中心分配。
+
 
 \section{评价指标与分析}
 ARI为主要外部指标；AMI、NMI为辅助外部指标\cite{vinh2010information}。Silhouette仅描述预测簇的内部结构。类内/类间距离和kNN purity依赖真实测试标签，只在分析协议冻结、测试标签解封后作事后诊断。聚类稳定性以不同K-means初始化及不同训练种子下测试分配之间的两两ARI衡量。
