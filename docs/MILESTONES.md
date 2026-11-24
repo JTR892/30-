@@ -1,8 +1,8 @@
-# 一个月初稿计划入口与阶段里程碑
+# 30天初稿详细计划入口与阶段里程碑
 
 详细逐日安排、验收标准、Gate、风险应对和状态纪律已统一维护在：
 
-[docs/ONE_MONTH_MANUSCRIPT_PLAN.md](ONE_MONTH_MANUSCRIPT_PLAN.md)
+[30天初稿详细计划（11.20—12.20）](ONE_MONTH_MANUSCRIPT_PLAN.md)
 
 计划周期：**2026-11-20—2026-12-20**。截至2026-11-24，当前仍处于数据处理阶段。
 

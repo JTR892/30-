@@ -8,7 +8,7 @@
 | LaTeX构建 | .github/workflows/ci.yml、paper/main.tex | XeLaTeX已成功编译；PDF artifact已上传，保留至2026-12-08 |
 | 真实数据与算力 | docs/LOCAL_EXECUTION.md、mps_smoke.py | 本地审计与MPS合成smoke工具已准备；真实数据和M1 Max尚未执行 |
 | 正式训练与分析 | docs/TRAINING_IMPLEMENTATION_PLAN.md | SimCLR/Attention训练器尚未实现，参数未冻结，不得声称已训练 |
-| 一个月初稿计划 | docs/ONE_MONTH_MANUSCRIPT_PLAN.md | 已建立2026-11-20至2026-12-20逐日任务表；当前数据处理阶段，任务完成情况以产物证据回填 |
+| 一个月初稿计划 | docs/ONE_MONTH_MANUSCRIPT_PLAN.md（30天初稿详细计划） | 已建立2026-11-20至2026-12-20逐日任务表；当前数据处理阶段，任务完成情况以产物证据回填 |
 
 CI运行记录：https://github.com/JTR892/30-/actions/runs/45390330753
 
