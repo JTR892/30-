@@ -1,61 +1,61 @@
-# 焊缝 X 射线裁剪图像空间注意力研究
+# 焊缝X射线裁剪图像自监督表征与聚类研究
 
 [![CI](https://github.com/JTR892/30-/actions/workflows/ci.yml/badge.svg)](https://github.com/JTR892/30-/actions/workflows/ci.yml)
 
-工作题目：**有限无标签训练数据下空间注意力对焊缝 X 射线裁剪图像表征与无监督聚类的影响**。
+**工作题目：不同训练数据规模下空间注意力对焊缝X射线裁剪图像自监督表征学习与无监督聚类表现的影响。**
 
-本研究以团队现有 15,194 张焊缝 X 射线二分类裁剪图像为目标数据集。该数量来自研究者确认，实际可读、去重后的数量须以本地审计为准。数据来自团队 DR_SD 数据，并对应 Wang 等 2025 年论文所用数据；不将其称为新数据集。
+本研究拟使用团队现有、标记为DR_SD的焊缝X射线二分类图像。研究者报告目标数量为15,194张，并认为其与Wang等（2025）论文所用数据相对应。Wang等论文确实报告15,194张数字X射线图像且缺陷/非缺陷数量平衡，但团队本地文件与论文数据的逐文件身份对应、裁剪来源链及实际可用数量尚未独立核验。不得仅凭数量相同宣称文件完全一致。论文DOI：https://doi.org/10.1016/j.eswa.2025.126386
 
-## v0.3 研究边界
-- 观察单位：一张从完整底片裁剪得到的焊缝区域图像。
-- 参考类别：缺陷 / 无缺陷。
-- 不要求追溯原始底片或焊口编号；不要求先完成全部 XML 核验。
-- 必须检查图像可读性、显式类别目录映射、SHA256 完全重复和冲突标签。
-- 图像级划分不能证明原始底片/焊口级独立性，不能声称跨底片泛化。
-- XML 仅为后续扩展；未核验前不承诺缺陷区域分析。
+## v0.4研究边界
+- 观察单位：一张焊缝区域X射线裁剪图像，不是完整底片或缺陷框。
+- 当前工作标签：缺陷 / 无缺陷；实际目录名必须显式映射。
+- 15,194是目标数量，不是本地审计确认的可用数量。
+- 原始底片、焊口和来源组映射不是主实验硬性要求；图像级划分不能证明底片级独立性，不能声称跨底片泛化。
+- XML只作为后续扩展；未完成匹配、坐标、类别与一致性核验前，不承诺缺陷区域分析。
+- 当前审计脚本按DATA_ROOT下的第一层目录映射类别；运行前确认DATA_ROOT直接包含两个类别目录。如实际目录层级不同，先修改并测试脚本，不要改动原始数据。
 
 ## 核心问题
-1. 10%、50%、100% 无标签训练数据规模下，空间注意力是否改变缺陷/无缺陷聚类表现？
-2. 聚类变化是否对应特征几何与聚类稳定性的变化？
+1. 在train划分内部使用10%、50%、100%的无标签图像子集时，空间注意力是否改变缺陷/无缺陷聚类表现？
+2. 注意力带来的聚类变化是否伴随特征几何和聚类稳定性的变化？
 
-## 实验
+## 预设实验
 - Baseline：ResNet18 + SimCLR。
-- Attention：相同模型增加一个 CBAM 空间注意力分支（不是完整 CBAM）。
-- 主聚类 K-means，固定 K=2。K 来自已知二分类任务定义，属于已知簇数条件下的无监督聚类。
-- 主指标 ARI；辅助 AMI、NMI、Silhouette、稳定性、类内/类间距离、kNN purity。
-- 目标矩阵：3 个规模 × 2 个模型 × 5 个配对种子 = 30 次；预算不足可用 3 个种子、18 次，并标为探索性。
-- 训练子集从训练分区随机嵌套抽样，不用标签抽样；配对模型使用同一子集。
+- Attention：相同训练设置增加一个CBAM空间注意力分支；不是完整CBAM，也不是新注意力算法。
+- 两模型计划使用相同的ImageNet监督预训练ResNet18初始化。目标数据上的对比训练不使用缺陷/无缺陷标签；因此准确表述为“目标域自监督训练 + 外部监督预训练初始化”，不能称整个流程完全无监督。
+- 训练比例10%、50%、100%均以train划分为分母，不是全体15,194张的比例；子集在train内随机嵌套抽样且不按标签分层。
+- 聚类使用K-means，固定K=2。K来自已知二分类任务，属于已知簇数条件下的无监督聚类，不是发现未知缺陷类别数。
+- ARI为主要外部指标；AMI、NMI为辅助外部指标；Silhouette为内部结构指标；特征几何、kNN purity和聚类稳定性作为事后诊断。
+- 主对比为C_s = [ARI_attention(10%) - ARI_baseline(10%)] - [ARI_attention(100%) - ARI_baseline(100%)]。同时报告50%结果和各规模原始配对差。
+- 固定优化步数和batch用于控制更新次数；较小子集会被重复采样更多次。必须记录曝光次数、耗时与内存，结论不能被表述为纯粹的样本数量因果效应。
 
 ## 30天初稿详细计划
-个人月度计划：**2026-11-20 至 2026-12-20**，当前处于数据处理阶段。逐日任务、阶段验收、风险和延期处理见：[30天初稿详细计划（11.20—12.20）](docs/ONE_MONTH_MANUSCRIPT_PLAN.md)。该计划是任务安排，完成状态必须由真实产物证明。
+个人计划周期：2026-11-20至2026-12-20。11月20日为Day 0启动基线，11月21日至12月20日为Day 1至Day 30；首尾日期均列出时有31个日期标签，但实际经过30天。详见[30天初稿详细计划（11.20—12.20）](docs/ONE_MONTH_MANUSCRIPT_PLAN.md)。
 
 ## 自动化检查
-GitHub Actions 在 push、pull request 和手动触发时执行：
-- Python 合成数据测试与 DRAFT 协议门槛检查；
-- XeLaTeX 论文编译，并将 PDF 作为 workflow artifact 保存。
+GitHub Actions在push、pull request和手动触发时执行：
+- Python合成数据测试与DRAFT协议门槛检查；
+- XeLaTeX论文编译，并将PDF作为workflow artifact保存。
 
-查看 [Actions](https://github.com/JTR892/30-/actions) 获取真实运行结果。CI 只验证代码和论文能否构建，不代表真实数据或模型实验通过。
+CI只验证代码和论文能否构建，不代表真实数据审计、M1 Max训练或模型实验通过。查看[Actions](https://github.com/JTR892/30-/actions)获取运行结果。
 
 ## 本地数据与算力任务
-复制 `config/label_map.example.json` 为 `config/label_map.local.json`，将键改成真实类别目录名。然后执行：
-```sh
-make install
-make audit DATA_ROOT="/actual/binary_dataset"
-make split
-make test
-make paper
-```
-M1 Max 环境检查与合成数据 MPS 冒烟测试：
-```sh
-python -m pip install -r requirements-mps.txt
-make environment
-make mps-smoke
-```
-详细步骤见 [docs/LOCAL_EXECUTION.md](docs/LOCAL_EXECUTION.md)。
+复制config/label_map.example.json为config/label_map.local.json，将键改成真实类别目录名。确认DATA_ROOT直接包含两个类别目录后执行：
 
-原始图像、真实路径、标签映射、数据清单、测试标签和训练产物不得上传公开 GitHub。仓库已忽略常用本地文件，但仍需检查 `git status`，不要使用 `git add -f` 强制上传。
+    make install
+    make audit DATA_ROOT="/actual/binary_dataset"
+    make split
+    make test
+    make paper
 
-## 状态
-已实现只读审计、显式标签映射、SHA256 重复检查、图像级分层划分与协议门槛。真实数据审计仍需在本地数据上执行。MPS smoke 脚本仅测试合成数据吞吐；正式 SimCLR/Attention 训练器尚未实现，正式训练不得启动。仓库不是已训练成功的流水线。
+M1 Max环境检查与合成数据MPS冒烟测试：
 
-测试：`python -m unittest discover -s tests -v`。LaTeX：在 `paper` 目录运行 `latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex`。
+    python -m pip install -r requirements-mps.txt
+    make environment
+    make mps-smoke
+
+合成MPS smoke仅使用随机合成图像与普通ResNet18，不代表SimCLR双视图+空间注意力的真实训练吞吐。详细步骤见docs/LOCAL_EXECUTION.md。
+
+原始图像、真实路径、标签映射、数据清单、测试标签和训练产物不得上传公开GitHub。
+
+## 当前状态
+已实现只读审计、显式标签映射、SHA256完全重复检查、图像级分层划分与协议门槛。真实数据审计仍需在本地执行。MPS smoke仅测试合成数据吞吐；正式SimCLR/Attention训练器尚未实现。当前没有真实模型训练结果。

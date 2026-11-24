@@ -12,53 +12,59 @@
 \renewcommand{\figurename}{图}
 \renewcommand{\tablename}{表}
 \setlength{\parindent}{2em}\setlength{\parskip}{0.3em}\sloppy
-\title{有限无标签训练数据下空间注意力对焊缝 X 射线裁剪图像\\表征与无监督聚类的影响}
+\title{不同训练数据规模下空间注意力对焊缝X射线裁剪图像\\自监督表征学习与无监督聚类表现的影响}
 \author{作者与单位待填写}
-\date{研究骨架 v0.3 \quad 2026年11月24日}
+\date{研究骨架 v0.4 \quad 2026年11月25日}
 \begin{document}\maketitle
 \begin{abstract}
-\textbf{目的：}研究空间注意力是否改变焊缝X射线裁剪图像的无监督聚类表现，并检验其是否随无标签训练数据规模变化。
-\textbf{数据：}拟使用团队现有15,194张缺陷/无缺陷二分类裁剪图像；实际可读数量和标签分布待审计。研究者确认数据来自团队DR\_SD并对应Wang等2025年论文数据。
-\textbf{方法占位：}比较ResNet18+SimCLR与增加空间注意力分支的模型，采用10\%、50\%、100\%训练子集；K-means固定K=2，标签仅用于分层划分和最终评价。
+\textbf{目的：}考察在目标域缺陷/无缺陷标签不参与表征训练的条件下，空间注意力是否改变焊缝X射线裁剪图像的自监督表征与已知簇数无监督聚类表现，以及其相对收益是否随训练图像数量变化。
+\textbf{数据：}拟使用团队现有、标记为DR\_SD的二分类图像。研究者报告目标数量为15,194张，并认为与Wang等（2025）所用数据相对应；该论文报告同为15,194张数字X射线图像且缺陷/非缺陷数量平衡。团队本地文件与论文数据的逐文件身份、裁剪来源链及实际可用数量尚未独立核验。
+\textbf{方法占位：}比较ResNet18+SimCLR与增加CBAM空间注意力分支的模型；训练规模为train划分内部的10\%、50\%、100\%。计划使用ImageNet监督预训练初始化，目标域对比训练不使用目标标签，故不将整个流程称为完全无监督。K-means固定K=2，标签不参与拟合或簇分配。
 \textbf{结果占位：}尚无正式实验结果，不得填写推测指标。
-\textbf{结论占位：}依据真实聚类、几何与稳定性结果填写，并披露图像级划分不能保证底片级独立性。本稿为通用article骨架，非目标期刊官方模板。
+\textbf{结论占位：}依据真实聚类、几何与稳定性结果填写，并披露图像级划分不能保证底片级独立性。
 \end{abstract}
+
 \section{引言}
-焊缝X射线监督分类已研究注意力对缺陷识别的影响\cite{wang2025attention}，但监督分类不能直接证明目标域标签不参与训练时会形成语义聚类。工业异常类型聚类已有局部特征加权方法\cite{sohn2023anomaly}。本研究比较既有空间注意力分支在焊缝裁剪图像自监督表征与聚类任务中的作用，不提出新注意力算法。
-研究问题为：空间注意力是否改变不同无标签训练规模下的缺陷/无缺陷聚类表现；聚类变化是否对应特征几何和稳定性变化。
+Wang等（2025）已在焊缝X射线二分类任务中比较通道与空间注意力，并分析缺陷与非缺陷特征簇\cite{wang2025attention}。因此，本研究不将“首次在焊缝图像使用空间注意力”或“首次分析特征簇”作为创新点。拟研究的问题是：当目标域缺陷/无缺陷标签不参与SimCLR表征训练时，空间注意力是否改变不同训练图像规模下的已知K聚类表现；该变化是否伴随特征几何与稳定性变化。工业异常类型聚类已有局部特征加权方法\cite{sohn2023anomaly}，本文定位需与其区分。
+
 \section{数据与任务定义}
-主数据为团队现有二分类焊缝X射线裁剪图像，目标数量15,194张，实际数量待审计。研究者确认其来自团队DR\_SD并对应Wang等2025年数据\cite{wang2025attention}。每张焊缝区域裁剪图像为观察单位，类别为defect/no\_defect；不将其描述为新数据集。
-按类别进行图像级80/10/10 train/calibration/test分层划分。训练子集从train随机抽样，不按标签分层。训练、校准、测试图像清单不含标签；测试标签单独锁定。模型只读取训练图像像素。标签不用于表征学习、K-means拟合、簇分配或模型选择。
+拟使用团队现有、标记为DR\_SD的二分类焊缝X射线图像，研究者报告目标数量15,194张。Wang等（2025）报告15,194张数字X射线图像且缺陷与非缺陷数量平衡\cite{wang2025attention}；但团队本地文件与论文图像的逐文件身份对应、裁剪来源链和实际可读数量尚未独立核验。每张焊缝区域裁剪图像为观察单位，工作标签为defect/no\_defect；不将其描述为新数据集。
+按标签进行图像级80/10/10 train/聚类拟合集/test分层划分，披露标签用于分层。训练子集10\%、50\%、100\%均以train划分为分母，并在train内随机嵌套抽样，不按标签分层。模型输入清单不含标签；test标签单独锁定。目标域标签不用于表征训练、子集选择、模型/超参数选择、K-means拟合或簇分配。
 不追溯原始底片/焊口，因此图像级划分不能保证同源裁剪不跨集合。结果不声称底片级独立或跨底片泛化。
+
 \section{方法}
-Baseline为ResNet18+SimCLR\cite{he2016resnet,chen2020simclr}。Attention在相同骨干layer4后、GAP前增加一个CBAM空间分支\cite{woo2018cbam}；只用空间分支不称完整CBAM。ImageNet监督预训练如使用，披露其外部监督性质。聚类特征为投影头前GAP并L2归一化。
+Baseline为ResNet18+SimCLR\cite{he2016resnet,chen2020simclr}。Attention在相同骨干layer4后、GAP前增加一个CBAM空间分支\cite{woo2018cbam}；只用空间分支不称完整CBAM。计划使用配对ImageNet监督预训练权重，需披露外部监督初始化。聚类特征拟采用投影头前GAP并L2归一化。
 \begin{equation}
 M_s(F)=\sigma(f^{7\times7}([\mathrm{Avg}_c(F);\mathrm{Max}_c(F)])),\quad F'=M_s(F)\odot F.
 \end{equation}
 \begin{figure}[ht]\centering
 \begin{tikzpicture}[node distance=6mm and 7mm,b/.style={draw,rounded corners,align=center,text width=27mm,minimum height=13mm,font=\small},a/.style={-{Stealth[length=2mm]},thick}]
-\node[b](d){15,194张目标裁剪图像\\只读审计去重};
+\node[b](d){15,194张目标图像\\只读审计去重};
 \node[b,right=of d](s){图像级分层\\80/10/10};
-\node[b,right=of s](t){训练分区\\10/50/100\%};
+\node[b,right=of s](t){train划分\\10/50/100\%};
 \node[b,right=of t](m){配对模型\\Baseline/Attention};
 \node[b,below=of m](f){冻结GAP特征\\L2归一化};
-\node[b,left=of f](k){Calibration\\K-means K=2};
+\node[b,left=of f](k){聚类拟合集\\K-means K=2};
 \node[b,left=of k](e){锁定测试集\\最终评价};
 \draw[a](d)--(s);\draw[a](s)--(t);\draw[a](t)--(m);\draw[a](m)--(f);\draw[a](f)--(k);\draw[a](k)--(e);
 \end{tikzpicture}
 \caption{图像级划分与已知簇数无监督聚类流程。测试标签仅在协议冻结后解封。}
 \end{figure}
-主实验固定K-means的K=2。K来自预先已知的二分类任务定义，而非模型发现；真实标签不提供给K-means，也不提供簇—类别映射。K-means仅在固定无标签calibration特征上拟合，测试样本按最近中心分配。
+主实验固定K-means的K=2。K来自已知二分类任务定义，而非模型发现；真实标签不提供给K-means，也不提供簇—类别映射。K-means仅在固定无标签聚类拟合集特征上拟合，测试样本按最近中心分配。
+
 \section{评价指标与分析}
-ARI为主要外部指标；AMI、NMI为辅助\cite{vinh2010information}。Silhouette仅描述内部结构。第二层分析包括类内/类间特征距离、kNN purity及聚类稳定性。
+ARI为主要外部指标；AMI、NMI为辅助外部指标\cite{vinh2010information}。Silhouette仅描述预测簇的内部结构。类内/类间距离和kNN purity依赖真实测试标签，只在分析协议冻结、测试标签解封后作事后诊断。聚类稳定性以不同K-means初始化及不同训练种子下测试分配之间的两两ARI衡量。
 令
 \begin{equation}
 \Delta_s(r)=ARI_{\mathrm{attention},s}(r)-ARI_{\mathrm{baseline},s}(r),
-\quad A_s=\frac{\Delta_s(10\%)+\Delta_s(50\%)+\Delta_s(100\%)}{3}.
+\quad C_s=\Delta_s(10\%)-\Delta_s(100\%).
 \end{equation}
-同时报告各规模所有种子配对差、均值、标准差和失败运行。
+C_s为正表示注意力的相对ARI收益在10\%训练规模下比100\%更大，不代表注意力在10\%时必然优于基线。次要汇总为三个规模下\Delta_s的平均值。报告所有种子和各规模原始结果。
+
 \section{实验设计}
-目标矩阵为3个规模×2个模型×5个配对种子，共30次。若M1 Max预算不足，在测试标签解封前改为3个种子、18次并标为探索性。尺寸、batch、更新步数、学习率和增强通过训练侧预实验确定并冻结。
+训练规模10\%、50\%、100\%均为train划分内部比例。主比较拟固定batch和optimizer steps；小子集因此会被重复采样更多次，空间分支也会增加计算量。记录唯一图像数、图像曝光次数、墙钟时间、吞吐和峰值内存。固定steps不等于相同FLOPs、墙钟时间或图像曝光次数。
+优先完成3个配对种子、18次探索性实验；只有真实图像Pilot表明资源允许时扩展至5个种子、30次。尺寸、batch、更新步数、学习率和增强通过训练侧预实验确定并冻结。
+
 \section{结果占位}
 \begin{table}[ht]\centering
 \caption{结果占位；横线表示尚未实验。}
@@ -66,10 +72,13 @@ ARI为主要外部指标；AMI、NMI为辅助\cite{vinh2010information}。Silhou
 训练规模&Baseline ARI&Attention ARI&配对差&测试图像数\\\midrule
 10\%&---&---&---&---\\50\%&---&---&---&---\\100\%&---&---&---&---\\\bottomrule
 \end{tabular}\end{table}
-\subsection{特征几何与稳定性}待填类内/类间距离、kNN purity及两类聚类稳定性结果。
+\subsection{特征几何与稳定性}待填类内/类间距离、kNN purity及聚类稳定性结果。
 \subsection{XML可选扩展}待XML匹配、坐标、类别和一致性核验通过后再决定是否分析缺陷区域注意力关联；未核验前不承诺结果。
+
 \section{讨论与局限}
-图像级随机划分无法排除同一底片/焊口衍生图像跨集合；不能声称来源级独立或跨底片泛化。已知K=2是任务先验，结论不覆盖未知簇数发现。性能、几何和稳定性证据不自动构成因果机制。
-\section{结论占位}实验尚未完成，不判断空间注意力有效或无效，待真实结果填写。
+Wang等（2025）已研究焊缝X射线图像中的注意力及缺陷/非缺陷特征簇，本研究的潜在差异在于目标域标签不参与表征训练及训练规模控制。图像级随机划分无法排除同一底片/焊口衍生图像跨集合；不能声称来源级独立或跨底片泛化。已知K=2是任务先验，结论不覆盖未知簇数发现。若采用ImageNet监督预训练，应披露外部监督。固定更新步数导致不同训练规模的图像曝光次数不同；性能、几何和稳定性证据不自动构成因果机制。
+
+\section{结论占位}
+实验尚未完成，不判断空间注意力有效或无效，待真实结果填写。
 \bibliographystyle{plain}\bibliography{references}
 \end{document}
