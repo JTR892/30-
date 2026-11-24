@@ -1,6 +1,6 @@
 # 正式模型训练实现计划 v0.3
 
-<badge>BLOCKED — trainer not implemented</badge>
+**状态：BLOCKED — 训练器尚未实现。**
 
 ## 当前事实
 仓库已经定义研究对照：ResNet18+SimCLR baseline，以及在 layer4 后、GAP 前增加 CBAM spatial branch 的 Attention 变体。但当前仓库没有完整的训练器，不能仅凭研究协议或 MPS smoke 脚本启动正式实验。

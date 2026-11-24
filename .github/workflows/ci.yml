@@ -24,9 +24,9 @@ jobs:
         python-minor: ["10", "11", "12", "13"]
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.${{ matrix.python-minor }}"
           cache: pip
@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Install TeX Live and fonts
         run: |
           sudo apt-get update
@@ -67,7 +67,7 @@ jobs:
           latexmk -C
           latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
       - name: Upload compiled PDF
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: manuscript-pdf
           path: paper/main.pdf
