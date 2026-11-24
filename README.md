@@ -36,7 +36,7 @@ GitHub Actions在push、pull request和手动触发时执行：
 - Python合成数据测试与DRAFT协议门槛检查；
 - XeLaTeX论文编译，并将PDF作为workflow artifact保存。
 
-CI只验证代码和论文能否构建，不代表真实数据审计、M1 Max训练或模型实验通过。查看[Actions](https://github.com/JTR892/30-/actions)获取运行结果。
+CI只验证代码和论文能否构建，不代表真实数据审计、M1 Max训练或模型实验通过。论文PDF作为GitHub Actions Artifact保存90天；最近一次已核验构建及PDF检查记录见[LaTeX构建报告](docs/LATEX_BUILD_REPORT.md)。查看[Actions](https://github.com/JTR892/30-/actions)获取运行结果。
 
 ## 本地数据与算力任务
 复制config/label_map.example.json为config/label_map.local.json，将键改成真实类别目录名。确认DATA_ROOT直接包含两个类别目录后执行：

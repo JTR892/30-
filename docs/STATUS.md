@@ -21,7 +21,7 @@
 - Wang等（2025）已研究注意力和特征簇，不能声称首次；潜在差异是目标域自监督训练与训练规模控制。
 
 ## 工程状态
-- GitHub Actions此前的Python合成测试和XeLaTeX构建已通过；新v0.4提交的CI状态需以本次Actions运行结果为准。
+- GitHub Actions在代码提交 `53f33b2289993f9b0a5ba5653e19529a64b17578` 上通过：Python 3.10–3.13测试全部成功，XeLaTeX编译成功，3页PDF已上传Artifact。构建日志与PDF逐页检查见 `docs/LATEX_BUILD_REPORT.md`。
 - 真实数据审计：尚未在本地真实数据上执行。
 - MPS环境与合成吞吐：脚本已准备，尚未在用户M1 Max上执行。
 - 正式模型训练：SimCLR/Attention训练器尚未实现，正式训练未开始。
