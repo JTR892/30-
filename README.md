@@ -52,7 +52,7 @@ CI中的测试使用合成数据，不读取用户本地真实数据。CI通过�
 
 ## 本地数据与算力任务
 
-复制`config/label_map.example.json`为`config/label_map.local.json)，将键替换为实际类别目录名，值分别对应`defect`和`no_defect`。确认DATA_ROOT直接包含两个类别目录后执行：
+复制`config/label_map.example.json`为`config/label_map.local.json`，将键替换为实际类别目录名，值分别对应`defect`和`no_defect`。确认DATA_ROOT直接包含两个类别目录后执行：
 
 ```sh
 make install
