@@ -1,13 +1,14 @@
-# 六项交付与验收 v0.4 · 2026-11-25
+# 交付与验收 · 2026-11-27
 
-| 要求 | 当前材料 | 状态 |
-|---|---|---|
-| 研究问题、数据、方法、指标、风险 | docs/RESEARCH_BRIEF.md、docs/ANALYSIS_PLAN.md | 已修订概念和标签边界；无真实发现 |
-| GitHub骨架与AGENTS | README、AGENTS、protocol | 审计/标签映射/重复检查/图像级划分/协议门槛已实现；训练代码未实现 |
-| 自动化测试 | .github/workflows/ci.yml | v0.4的Python 3.10、3.11、3.12、3.13测试全部通过 |
-| LaTeX构建 | .github/workflows/ci.yml、paper/main.tex | v0.4 XeLaTeX编译通过；6个引用键全部匹配19条文献记录；PDF已上传Artifact并完成逐页检查，见docs/LATEX_BUILD_REPORT.md |
-| 真实数据与算力 | docs/LOCAL_EXECUTION.md、mps_smoke.py | 本地审计与MPS合成smoke工具已准备；真实数据和M1 Max尚未执行 |
-| 正式训练与分析 | docs/TRAINING_IMPLEMENTATION_PLAN.md | SimCLR/Attention训练器尚未实现，参数未冻结，不得声称已训练 |
-| 30天初稿详细计划 | docs/ONE_MONTH_MANUSCRIPT_PLAN.md | 11.20—12.20计划已按Day 0至Day 30重排；当前仍处于数据处理阶段，状态须由产物证据回填 |
+| 产物 | 当前状态与证据范围 |
+|---|---|
+| 多类别研究约定 | v0.5用户方向保留；任务书、AGENTS和分析计划已同步当前约束 |
+| 全量结构审计 | 32,932张图像、13,859份XML已检查，公开聚合结果见DATA_AUDIT_2026-11-27.md |
+| 独立复算与代码审查 | 全部图像字节重哈希、XML独立解析复算；验证见CODE_REVIEW_2026-11-27.md |
+| 语义判读 | 47张AI分诊；没有专业认证，不能冒充全部影像逐张鉴定 |
+| 类别与来源资格 | HOLD；冲突、多缺陷、来源/近重复、标注规范和许可待解决 |
+| 论文与计划 | v0.5骨架与条件性计划；模型结果占位，未填预期结果 |
+| 训练与分析 | 尚未实现/验证完整训练及分析，无模型性能结论 |
+| 文献 | 19条既有记录保留，本次不更新文献或改变访问深度 |
 
-研究计划自检记录见docs/PLAN_REVIEW_CHANGELOG.md。CI合成测试不代表真实数据或模型效果。DRAFT协议应拒绝正式训练。
+原始资料、图像、XML、逐图路径/哈希/标签清单及带框审阅图均保留本地、Git之外。公开同步只包含通用代码、修订协议、计划与聚合结论。

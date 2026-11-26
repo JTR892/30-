@@ -12,6 +12,7 @@ config/paths.local.json
 config/pilot.local.json
 config/label_map.local.json
 config/training.local.json
+config/xml_audit.local.json
 .env.local
 data/metadata/
 reports/analysis/

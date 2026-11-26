@@ -1,22 +1,46 @@
-"""Synthetic v0.4 final-gate tests."""
-import json,unittest
+"""Synthetic contract checks, never proof that data or training are qualified."""
+import json
+import unittest
 from pathlib import Path
-from weldstudy.protocol import issues
+from weldstudy.protocol import issues, PARAMS, GATES
+
+
 class ProtocolGateTests(unittest.TestCase):
- def fixture(self):
-  c=json.loads((Path(__file__).resolve().parents[1]/"config/protocol.json").read_text())
-  c.update(version="0.4",status="FROZEN",max_steps=10,batch_size=2,input_size=32,optimizer="x",learning_rate=.01,temperature=.1,weight_decay=0,augmentation_spec="x",pretrained_weights_sha256="a"*64,analysis_spec_sha256="b"*64,split_manifest_sha256="c"*64,checkpoint_rule="last",cluster_k=2,source_film_mapping_required=False)
-  for k in ["dataset_audit_passed","binary_label_map_verified","exact_duplicate_audit_passed","usage_permission_confirmed","mps_training_smoke_passed","test_labels_locked","analysis_spec_frozen"]:c[k]=True
-  return c
- def test_draft_rejected(self):self.assertTrue(issues({"version":"0.4-draft","status":"DRAFT"}))
- def test_complete_fixture_passes(self):self.assertEqual(issues(self.fixture()),[])
- def test_missing_gate_rejected(self):
-  c=self.fixture();c["binary_label_map_verified"]=False
-  self.assertIn("Gate not passed: binary_label_map_verified",issues(c))
- def test_wrong_k_rejected(self):
-  c=self.fixture();c["cluster_k"]=3
-  self.assertIn("Primary experiment must use known K=2",issues(c))
- def test_missing_source_mapping_policy_rejected(self):
-  c=self.fixture();c.pop("source_film_mapping_required")
-  self.assertIn("Source-film mapping must not be reintroduced as a v0.4 gate",issues(c))
-if __name__=="__main__":unittest.main()
+    def fixture(self):
+        c = dict.fromkeys(PARAMS, "synthetic-administrative-fixture")
+        c.update(dict.fromkeys(GATES, True))
+        c.update(version="0.5", status="FROZEN", cluster_k=5,
+                 cluster_k_policy="known_k_disclosed", source_film_mapping_required=True)
+        return c
+
+    def test_complete_synthetic_contract_is_administratively_accepted(self):
+        self.assertEqual(issues(self.fixture()), [])
+
+    def test_actual_draft_remains_closed(self):
+        c = json.loads((Path(__file__).resolve().parents[1]/"config/protocol.json").read_text())
+        self.assertIn("Protocol has not been frozen", issues(c))
+        self.assertIn("Gate not passed: dataset_audit_passed", issues(c))
+
+    def test_old_binary_contract_cannot_authorize_new_research(self):
+        c = self.fixture()
+        c.update(version="0.4", cluster_k=2, source_film_mapping_required=False)
+        result = issues(c)
+        self.assertTrue(any("historical" in r for r in result))
+        self.assertTrue(any("source-connected" in r for r in result))
+
+    def test_small_or_untyped_cluster_count_rejected(self):
+        for value in [None, True, 1, 2.5, "5"]:
+            c = self.fixture(); c["cluster_k"] = value
+            self.assertTrue(any("valid cluster_k" in r for r in issues(c)))
+
+    def test_missing_evidence_flag_blocks_contract(self):
+        c = self.fixture(); c["taxonomy_review_passed"] = False
+        self.assertIn("Gate not passed: taxonomy_review_passed", issues(c))
+
+    def test_xml_audit_does_not_authorize_a_real_image_pilot(self):
+        c = self.fixture(); c["real_image_pilot_passed"] = False
+        self.assertIn("Gate not passed: real_image_pilot_passed", issues(c))
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -46,6 +46,5 @@ def make_splits(manifest,out,seed=17,partition_seed=20261122):
     return report
 def main():
     p=argparse.ArgumentParser();p.add_argument("--manifest",required=True);p.add_argument("--out",required=True);p.add_argument("--seed",type=int,default=17);p.add_argument("--partition-seed",type=int,default=20261122);a=p.parse_args()
-    try: print(json.dumps(make_splits(a.manifest,a.out,a.seed,a.partition_seed),ensure_ascii=False,indent=2))
-    except (ValueError,KeyError,FileNotFoundError) as e:p.exit(2,str(e)+"\n")
+    p.exit(2,"Legacy v0.4 image-only split CLI is disabled for active v0.5 research; resolve source groups and taxonomy first\n")
 if __name__=="__main__":main()

@@ -7,7 +7,7 @@ name = "weldstudy"
 version = "0.1.0"
 description = "Auditable scaffold for a weld radiograph clustering study"
 requires-python = ">=3.10"
-dependencies = ["Pillow>=10"]
+dependencies = ["Pillow>=10", "numpy>=1.26"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

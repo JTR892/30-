@@ -1,0 +1,177 @@
+{
+  "schema_version": "xml-audit-1.0",
+  "counts": {
+    "image_files": 32932,
+    "xml_files": 13859,
+    "objects": 31898,
+    "unique_file_hashes": 32676,
+    "unique_pixel_hashes": 32676
+  },
+  "quality_counts": {
+    "READABLE": 32932
+  },
+  "xml_parse_counts": {
+    "PARSED": 13859
+  },
+  "label_consistency_counts": {
+    "DIRECTORY_EXACT_SINGLE_TYPE": 10806,
+    "DIRECTORY_PRESENT_MULTITYPE": 1854,
+    "DIRECTORY_LABEL_ABSENT": 1199,
+    "UNKNOWN": 19073
+  },
+  "candidate_counts": {
+    "STRUCTURAL_SINGLE_TYPE_CANDIDATE_NOT_CERTIFIED": 8387,
+    "HOLD": 20805,
+    "MULTITYPE_NOT_SINGLE_LABEL": 1776,
+    "HETEROGENEOUS_LABEL_REVIEW": 1964
+  },
+  "issue_image_counts": {
+    "XML_FILENAME_MISMATCH": 486,
+    "DIRECTORY_LABEL_ABSENT": 1199,
+    "DUPLICATE_LABEL_OR_POPULATION_CONFLICT": 50,
+    "BOX_OUTSIDE_OR_INVALID_ACTUAL": 3,
+    "BOX_OUTSIDE_OR_INVALID_XML": 3,
+    "OBJECT_ERROR": 3,
+    "NO_XML_SEMANTIC_UNVERIFIED": 19073
+  },
+  "byte_duplicate_summary": {
+    "groups": 255,
+    "extra_files": 256,
+    "cross_partition_groups": 17,
+    "cross_population_groups": 0
+  },
+  "pixel_duplicate_summary": {
+    "groups": 255,
+    "extra_files": 256,
+    "cross_partition_groups": 17,
+    "cross_population_groups": 0,
+    "label_set_conflict_groups": 25
+  },
+  "dimension_patterns": 1666,
+  "class_statistics": [
+    {
+      "label": "其它缺陷",
+      "role": "DEFECT_LABEL_CANDIDATE",
+      "object_instances": 6769,
+      "image_files": 3929,
+      "single_type_files": 2737,
+      "structural_candidate_files": 0,
+      "structural_candidate_unique_pixels": 0
+    },
+    {
+      "label": "内凹",
+      "role": "DEFECT_LABEL_CANDIDATE",
+      "object_instances": 672,
+      "image_files": 497,
+      "single_type_files": 298,
+      "structural_candidate_files": 272,
+      "structural_candidate_unique_pixels": 272
+    },
+    {
+      "label": "咬边",
+      "role": "DEFECT_LABEL_CANDIDATE",
+      "object_instances": 844,
+      "image_files": 712,
+      "single_type_files": 563,
+      "structural_candidate_files": 549,
+      "structural_candidate_unique_pixels": 540
+    },
+    {
+      "label": "成形不良",
+      "role": "DEFECT_LABEL_CANDIDATE",
+      "object_instances": 1007,
+      "image_files": 637,
+      "single_type_files": 531,
+      "structural_candidate_files": 526,
+      "structural_candidate_unique_pixels": 525
+    },
+    {
+      "label": "未焊透",
+      "role": "DEFECT_LABEL_CANDIDATE",
+      "object_instances": 1756,
+      "image_files": 1550,
+      "single_type_files": 1263,
+      "structural_candidate_files": 1197,
+      "structural_candidate_unique_pixels": 1193
+    },
+    {
+      "label": "未熔合",
+      "role": "DEFECT_LABEL_CANDIDATE",
+      "object_instances": 2058,
+      "image_files": 1639,
+      "single_type_files": 1257,
+      "structural_candidate_files": 1176,
+      "structural_candidate_unique_pixels": 1123
+    },
+    {
+      "label": "气孔",
+      "role": "DEFECT_LABEL_CANDIDATE",
+      "object_instances": 14825,
+      "image_files": 5270,
+      "single_type_files": 4243,
+      "structural_candidate_files": 3899,
+      "structural_candidate_unique_pixels": 3837
+    },
+    {
+      "label": "焊瘤",
+      "role": "DEFECT_LABEL_CANDIDATE",
+      "object_instances": 1538,
+      "image_files": 1321,
+      "single_type_files": 728,
+      "structural_candidate_files": 661,
+      "structural_candidate_unique_pixels": 644
+    },
+    {
+      "label": "焊缝",
+      "role": "AUXILIARY_BY_AUDIT_CONFIG",
+      "object_instances": 2233,
+      "image_files": 2233,
+      "single_type_files": 0,
+      "structural_candidate_files": 0,
+      "structural_candidate_unique_pixels": 0
+    },
+    {
+      "label": "裂纹",
+      "role": "DEFECT_LABEL_CANDIDATE",
+      "object_instances": 196,
+      "image_files": 169,
+      "single_type_files": 122,
+      "structural_candidate_files": 107,
+      "structural_candidate_unique_pixels": 104
+    }
+  ],
+  "audit_date": "2026-11-27",
+  "semantics": "No expert-certified image labels; user confirms good denotes qualified",
+  "dimension_ranges": {
+    "width": [
+      236,
+      2176
+    ],
+    "height": [
+      130,
+      2252
+    ]
+  },
+  "all_images": "uint16, single-channel, single-frame TIFF",
+  "all_xml_sizes_match": true,
+  "coordinate_review": {
+    "images": 3,
+    "objects": 4,
+    "definitely_inverted_objects": 1,
+    "zero_span_coordinate_convention_required": 3
+  },
+  "visual_review": {
+    "slots": 48,
+    "unique_images": 47,
+    "expert_certified": 0
+  },
+  "input_files_modified_by_auditor": false,
+  "independent_recheck_passed": true,
+  "qualification": "HOLD",
+  "limitations": [
+    "Pixel-unique is not source-independent",
+    "No raw films or annotation standard provided",
+    "No model training or final split",
+    "Limited candidate crop-overlap search found no exact translated overlap; this does not exclude crops or resampling"
+  ]
+}

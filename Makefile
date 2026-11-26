@@ -1,7 +1,8 @@
-.PHONY: install test paper audit split environment mps-deps mps-smoke
+.PHONY: install test paper audit audit-xml split environment mps-deps mps-smoke
 
 PYTHON ?= python
 LABEL_MAP ?= config/label_map.local.json
+AUDIT_CONFIG ?= config/xml_audit.local.json
 AUDIT_OUT ?= reports/audit
 SPLIT_OUT ?= data/splits
 MPS_BATCH_SIZE ?= 4
@@ -17,14 +18,16 @@ test:
 paper:
 	cd paper && latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
 
-audit:
-	@test -n "$(DATA_ROOT)" || (echo "Usage: make audit DATA_ROOT=/absolute/path/to/binary_dataset" && exit 2)
-	@test -f "$(LABEL_MAP)" || (echo "Missing label map: $(LABEL_MAP). Copy config/label_map.example.json and edit it." && exit 2)
-	$(PYTHON) -m weldstudy.audit --root "$(DATA_ROOT)" --label-map "$(LABEL_MAP)" --out "$(AUDIT_OUT)"
+audit: audit-xml
+
+audit-xml:
+	@test -n "$(DATA_ROOT)" || (echo "Set DATA_ROOT to the received dataset directory" && exit 2)
+	@test -f "$(AUDIT_CONFIG)" || (echo "Create a reviewed local XML audit configuration from config/xml_audit.example.json" && exit 2)
+	$(PYTHON) -m weldstudy.xml_audit --root "$(DATA_ROOT)" --config "$(AUDIT_CONFIG)" --out "$(AUDIT_OUT)"
 
 split:
-	@test -f "$(AUDIT_OUT)/manifest.csv" || (echo "Missing $(AUDIT_OUT)/manifest.csv; run make audit first." && exit 2)
-	$(PYTHON) -m weldstudy.split --manifest "$(AUDIT_OUT)/manifest.csv" --out "$(SPLIT_OUT)" --seed 17
+	@echo "Formal splitting is blocked: resolve multiclass taxonomy, duplicate/source components and semantic review first. Legacy v0.4 image-only splitter is not authorized."
+	@exit 2
 
 environment:
 	mkdir -p reports/local
