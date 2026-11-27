@@ -17,6 +17,20 @@ python -m weldstudy.protocol --config config/protocol.json
 
 outputs：images.csv/jsonl逐图、objects.csv逐对象、xml_records.jsonl逐XML、dimensions.csv全尺寸、review_queue.csv全量待专业语义复核、duplicates报告，以及independent_verification.json复算。输出目录非空时全量审计拒绝覆盖，以保留历史。
 
+## 合并去重复核任务
+
+在完整审计后，以同一真实数据根目录构建新的私有任务版本：
+
+```sh
+python -m weldstudy.review_tasks --root /actual/data/root \
+  --audit reports/audit/AUDIT_VERSION --out reports/audit/NEW_TASK_VERSION
+python scripts/verify_review_tasks.py --root /actual/data/root \
+  --audit reports/audit/AUDIT_VERSION --package reports/audit/NEW_TASK_VERSION
+python scripts/render_review_tasks.py --package reports/audit/NEW_TASK_VERSION
+```
+
+独立验证重新读全部原图/XML并核对CSV，失败返回2。HTML与JPEG只供定位，原始TIFF链接保留；专业复核在原图上进行，结论另存版本。构建程序拒绝覆盖已有非空输出。完整任务范围、合并规则和本次统计见[交付汇总](REVIEW_TASK_PACKAGE_2026-11-27.md)。
+
 47张不同图像的本地AI抽查已经完成；专业缺陷分类仍待标注人员依据规范复核。图库生成脚本只读取已固定的visual/selection.json，需提供本地CJK字体；图库不上传GitHub。
 
 真实模型训练、正式划分与几何分析尚未完成。MPS合成smoke不能替代真实SimCLR双视图/Attention的吞吐与内存测量。详见[计划](ONE_MONTH_MANUSCRIPT_PLAN.md)。
