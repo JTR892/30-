@@ -14,6 +14,8 @@
 
 第一步整理已将重复、类别、名称与坐标问题合并为[1,884个去重复核任务](docs/REVIEW_TASK_PACKAGE_2026-11-27.md)，覆盖2,140个原图文件，其余30,792张有完整剩余记录。原图/XML保留；任务包已完成四轮剩余集合独立复算，专业类别裁决与数据资格仍待完成。
 
+[类别字典](docs/LABEL_DICTIONARY_DRAFT.md)与[标注判读规则](docs/ANNOTATION_RULES_DRAFT.md)v0.1草案已完成，保留11项原始名称/人群声明并列出[20项人工确认问题](docs/HUMAN_CONFIRMATION_DRAFT.md)。全部原任务和逐图记录已关联到问题；标准适用性、专家定义和裁决字段保持待确认。公开术语资料的访问深度单列于[专门台账](docs/ANNOTATION_REFERENCES.md)。
+
 ## 审计与代码状态
 
 已实现：
@@ -62,4 +64,4 @@ cd paper
 latexmk -xelatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-文献保持既有19条台账；阅读深度见[LITERATURE_ACCESS](docs/LITERATURE_ACCESS.md)。本次未更新文献或提升阅读深度。原始工业图像/XML、用户PDF、真实路径、逐图清单、审阅图、权重与训练产物不上传公开GitHub。公开内容为通用代码、协议与聚合审计结论。
+论文台账保留既有19条及原阅读深度，见[LITERATURE_ACCESS](docs/LITERATURE_ACCESS.md)；本次新增8条标注术语资料，单列[专门台账](docs/ANNOTATION_REFERENCES.md)，区分目录摘要与相关段落核对。原始工业图像/XML、用户PDF、真实路径、逐图清单、审阅图、权重与训练产物不上传公开GitHub。公开内容为通用代码、协议、草案与聚合结论。

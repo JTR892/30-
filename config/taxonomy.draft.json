@@ -1,0 +1,89 @@
+{
+  "version": "taxonomy-0.1-DRAFT-2026-11-27",
+  "status": "DRAFT_NOT_APPROVED",
+  "applied_standard": null,
+  "approval": {"reviewer": "", "date": "", "evidence": ""},
+  "purpose": "Preserve observed label tokens and propose concepts for human confirmation; not a diagnostic classifier, acceptance rule, training selector or frozen K",
+  "automatic_alias_merges": [],
+  "entries": [
+    {
+      "label_id": "D_PORE", "raw_label": "气孔", "observed_in": "XML_AND_DIRECTORY_MAPPING", "proposed_role": "DEFECT_TYPE_CANDIDATE",
+      "concept_draft": "气体在焊缝金属中形成孔穴这一概念，供核对标签含义。",
+      "definition_status": "REFERENCE_CONCEPT_MAPPING_UNCONFIRMED", "expert_definition": null,
+      "human_checks": ["是否包括条孔、密集气孔等子型", "怎样区分孔穴、其它夹杂及成像伪影", "单个框对应一个孔还是一组指示"],
+      "source_ids": ["A03"], "question_ids": ["Q08", "Q11", "Q19"]
+    },
+    {
+      "label_id": "D_CRACK", "raw_label": "裂纹", "observed_in": "XML_AND_DIRECTORY_MAPPING", "proposed_role": "DEFECT_TYPE_CANDIDATE",
+      "concept_draft": "保留裂纹这一上位标签；具体裂纹机制、位置和子型待标注方解释，不能将整类限定为凝固裂纹。",
+      "definition_status": "DATASET_DEFINITION_PENDING", "expert_definition": null,
+      "human_checks": ["标签覆盖哪些裂纹子型", "与未熔合、未焊透和线状伪影的判别依据", "射线证据不足时怎样记录不确定"],
+      "source_ids": ["A08"], "question_ids": ["Q06", "Q08", "Q19"]
+    },
+    {
+      "label_id": "D_FUSION", "raw_label": "未熔合", "observed_in": "XML_AND_DIRECTORY_MAPPING", "proposed_role": "DEFECT_TYPE_CANDIDATE",
+      "concept_draft": "焊缝金属与接头侧壁或相邻焊道间未充分熔合的概念；是否包含根部未熔合待确认。",
+      "definition_status": "REFERENCE_CONCEPT_MAPPING_UNCONFIRMED", "expert_definition": null,
+      "human_checks": ["侧壁、层间、根部子型如何归并", "与未焊透的命名边界", "是否存在同一指示重复归类"],
+      "source_ids": ["A04", "A05"], "question_ids": ["Q06", "Q07", "Q08"]
+    },
+    {
+      "label_id": "D_PENETRATION", "raw_label": "未焊透", "observed_in": "XML_AND_DIRECTORY_MAPPING", "proposed_role": "DEFECT_TYPE_CANDIDATE",
+      "concept_draft": "接头根部未达到所需焊透程度这一候选概念；需先确认接头设计要求及其与根部未熔合的标签边界。",
+      "definition_status": "REFERENCE_CONCEPT_MAPPING_UNCONFIRMED", "expert_definition": null,
+      "human_checks": ["是否为要求全焊透的接头", "是否混用未焊透与根部未熔合", "需要哪些接头及检测记录才能判读"],
+      "source_ids": ["A05"], "question_ids": ["Q01", "Q06", "Q08"]
+    },
+    {
+      "label_id": "D_UNDERCUT", "raw_label": "咬边", "observed_in": "XML_AND_DIRECTORY_MAPPING", "proposed_role": "DEFECT_TYPE_CANDIDATE",
+      "concept_draft": "焊趾附近母材出现沟槽的概念；当前射线图中的对应位置和可判读证据待确认。",
+      "definition_status": "REFERENCE_CONCEPT_MAPPING_UNCONFIRMED", "expert_definition": null,
+      "human_checks": ["是否同时覆盖内外表面或不同焊道位置", "与内凹、未填满和边缘伪影怎样区分", "是否需要其它检验记录"],
+      "source_ids": ["A06"], "question_ids": ["Q05", "Q08", "Q18"]
+    },
+    {
+      "label_id": "D_CONCAVITY", "raw_label": "内凹", "observed_in": "XML_AND_DIRECTORY_MAPPING", "proposed_role": "DEFECT_TYPE_CANDIDATE",
+      "concept_draft": "候选概念为焊根凹陷；原始内凹标签是否确实对应root concavity，尚无标注方确认。",
+      "definition_status": "DATASET_TO_REFERENCE_MAPPING_PENDING", "expert_definition": null,
+      "human_checks": ["内凹是否专指焊根", "与成形不良、未填满、咬边的边界", "仅凭本图能否判定，是否存在厚度变化等替代解释"],
+      "source_ids": ["A07"], "question_ids": ["Q05", "Q08", "Q18"]
+    },
+    {
+      "label_id": "D_OVERLAP_TOKEN", "raw_label": "焊瘤", "observed_in": "XML_AND_DIRECTORY_MAPPING", "proposed_role": "DEFECT_TYPE_CANDIDATE",
+      "concept_draft": "保留焊瘤原名，核对是否指未与母材熔合的金属搭接，或另有生产者定义；不自动等同余高过大。",
+      "definition_status": "DATASET_TO_REFERENCE_MAPPING_PENDING", "expert_definition": null,
+      "human_checks": ["原标签是否对应overlap或另一形貌", "与余高过大、成形不良是否混用", "射线或其它记录提供什么证据"],
+      "source_ids": ["A06"], "question_ids": ["Q05", "Q08", "Q18"]
+    },
+    {
+      "label_id": "D_SHAPE_TOKEN", "raw_label": "成形不良", "observed_in": "XML_AND_DIRECTORY_MAPPING", "proposed_role": "BROAD_DEFECT_LABEL_PENDING_DEFINITION",
+      "concept_draft": "生产者使用的几何外形问题标签；具体覆盖范围与是否同质待确认，不映射为某个标准缺陷编号。",
+      "definition_status": "DATASET_DEFINITION_PENDING", "expert_definition": null,
+      "human_checks": ["包含哪些具体形貌", "与内凹、咬边、焊瘤是否上下位或互斥", "能否据现有材料形成可重复的评价类别"],
+      "source_ids": ["A06", "A07"], "question_ids": ["Q05", "Q07", "Q08"]
+    },
+    {
+      "label_id": "D_OTHER_TOKEN", "raw_label": "其它缺陷", "observed_in": "XML_AND_DIRECTORY_MAPPING", "proposed_role": "HETEROGENEOUS_LABEL_PENDING_DEFINITION",
+      "concept_draft": "未说明组成的其它缺陷集合；缺少子类记录时保留原名及未知语义，不当作已定义的单一类型。",
+      "definition_status": "DATASET_DEFINITION_PENDING", "expert_definition": null,
+      "human_checks": ["具体包括哪些缺陷或非缺陷现象", "是否混入不确定、伪影或未列出的类型", "能否追溯子类及定义"],
+      "source_ids": [], "question_ids": ["Q04", "Q07", "Q08"]
+    },
+    {
+      "label_id": "A_WELD_TOKEN", "raw_label": "焊缝", "observed_in": "XML", "proposed_role": "PROVISIONAL_AUXILIARY_REGION",
+      "concept_draft": "暂按焊缝辅助区域登记；须确认框的范围、标注目的及是否完整。不能从该标签推导正常。",
+      "definition_status": "ROLE_AND_REGION_PENDING_CONFIRMATION", "expert_definition": null,
+      "human_checks": ["是否只表示区域而非缺陷类型", "框是整焊缝还是局部区域", "仅焊缝标注是否表示未标缺陷而非正常"],
+      "source_ids": [], "question_ids": ["Q03", "Q08", "Q11"]
+    },
+    {
+      "label_id": "P_GOOD_TOKEN", "raw_label": "good", "observed_in": "POPULATION_DIRECTORY_AND_RESEARCHER_STATEMENT", "proposed_role": "QUALIFIED_POPULATION_CLAIM",
+      "concept_draft": "研究者确认good为合格；所依据的检测标准、允许存在的指示与逐图可见缺陷情况尚待记录。",
+      "definition_status": "RESEARCHER_STATEMENT_NOT_EXPERT_IMAGE_CERTIFICATION", "expert_definition": null,
+      "human_checks": ["合格依据何种标准与等级", "合格图像是否允许可见指示", "缺XML是否为设计如此，能否取得对应检验记录"],
+      "source_ids": [], "question_ids": ["Q01", "Q02", "Q18"]
+    }
+  ],
+  "administrative_states_not_classes": ["NOT_REVIEWED", "UNCERTAIN_TYPE", "UNREADABLE_FOR_SEMANTICS", "MULTIPLE_TYPES", "AUXILIARY_ONLY", "NOT_ASSESSABLE_FROM_AVAILABLE_EVIDENCE"],
+  "prohibited_inferences": ["NO_XML_IMPLIES_NORMAL", "AUXILIARY_ONLY_IMPLIES_NORMAL", "DIRECTORY_OR_XML_ALWAYS_CORRECT", "MAJORITY_DUPLICATE_XML_IS_TRUE", "LABEL_ID_IS_CLUSTER_COUNT", "QUALIFIED_IMPLIES_NO_VISIBLE_IMPERFECTION"]
+}

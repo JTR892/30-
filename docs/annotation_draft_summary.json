@@ -1,0 +1,271 @@
+{
+  "version": "annotation-draft-0.1",
+  "status": "DRAFT_NOT_APPROVED",
+  "source_image_files": 32932,
+  "source_xml_files": 13859,
+  "source_xml_objects": 31898,
+  "dictionary_entries": 11,
+  "questions": 20,
+  "base_review_tasks": 1884,
+  "base_review_member_files": 2140,
+  "scope_records": 32932,
+  "question_task_links": 17259,
+  "all_base_tasks_linked": true,
+  "unmapped_xml_labels": [],
+  "expert_decisions_created": 0,
+  "applied_standard": null,
+  "research_qualification": "HOLD",
+  "label_statistics": [
+    {
+      "label_id": "D_PORE",
+      "raw_label": "气孔",
+      "count_basis": "XML_OBJECT_LABEL_PRESENCE",
+      "object_instances": 14825,
+      "image_files": 5270,
+      "pixel_groups": 5183,
+      "task_member_files": 586,
+      "expert_definition": null,
+      "definition_status": "REFERENCE_CONCEPT_MAPPING_UNCONFIRMED"
+    },
+    {
+      "label_id": "D_CRACK",
+      "raw_label": "裂纹",
+      "count_basis": "XML_OBJECT_LABEL_PRESENCE",
+      "object_instances": 196,
+      "image_files": 169,
+      "pixel_groups": 166,
+      "task_member_files": 22,
+      "expert_definition": null,
+      "definition_status": "DATASET_DEFINITION_PENDING"
+    },
+    {
+      "label_id": "D_FUSION",
+      "raw_label": "未熔合",
+      "count_basis": "XML_OBJECT_LABEL_PRESENCE",
+      "object_instances": 2058,
+      "image_files": 1639,
+      "pixel_groups": 1575,
+      "task_member_files": 225,
+      "expert_definition": null,
+      "definition_status": "REFERENCE_CONCEPT_MAPPING_UNCONFIRMED"
+    },
+    {
+      "label_id": "D_PENETRATION",
+      "raw_label": "未焊透",
+      "count_basis": "XML_OBJECT_LABEL_PRESENCE",
+      "object_instances": 1756,
+      "image_files": 1550,
+      "pixel_groups": 1546,
+      "task_member_files": 80,
+      "expert_definition": null,
+      "definition_status": "REFERENCE_CONCEPT_MAPPING_UNCONFIRMED"
+    },
+    {
+      "label_id": "D_UNDERCUT",
+      "raw_label": "咬边",
+      "count_basis": "XML_OBJECT_LABEL_PRESENCE",
+      "object_instances": 844,
+      "image_files": 712,
+      "pixel_groups": 703,
+      "task_member_files": 36,
+      "expert_definition": null,
+      "definition_status": "REFERENCE_CONCEPT_MAPPING_UNCONFIRMED"
+    },
+    {
+      "label_id": "D_CONCAVITY",
+      "raw_label": "内凹",
+      "count_basis": "XML_OBJECT_LABEL_PRESENCE",
+      "object_instances": 672,
+      "image_files": 497,
+      "pixel_groups": 497,
+      "task_member_files": 40,
+      "expert_definition": null,
+      "definition_status": "DATASET_TO_REFERENCE_MAPPING_PENDING"
+    },
+    {
+      "label_id": "D_OVERLAP_TOKEN",
+      "raw_label": "焊瘤",
+      "count_basis": "XML_OBJECT_LABEL_PRESENCE",
+      "object_instances": 1538,
+      "image_files": 1321,
+      "pixel_groups": 1290,
+      "task_member_files": 181,
+      "expert_definition": null,
+      "definition_status": "DATASET_TO_REFERENCE_MAPPING_PENDING"
+    },
+    {
+      "label_id": "D_SHAPE_TOKEN",
+      "raw_label": "成形不良",
+      "count_basis": "XML_OBJECT_LABEL_PRESENCE",
+      "object_instances": 1007,
+      "image_files": 637,
+      "pixel_groups": 636,
+      "task_member_files": 9,
+      "expert_definition": null,
+      "definition_status": "DATASET_DEFINITION_PENDING"
+    },
+    {
+      "label_id": "D_OTHER_TOKEN",
+      "raw_label": "其它缺陷",
+      "count_basis": "XML_OBJECT_LABEL_PRESENCE",
+      "object_instances": 6769,
+      "image_files": 3929,
+      "pixel_groups": 3853,
+      "task_member_files": 940,
+      "expert_definition": null,
+      "definition_status": "DATASET_DEFINITION_PENDING"
+    },
+    {
+      "label_id": "A_WELD_TOKEN",
+      "raw_label": "焊缝",
+      "count_basis": "XML_OBJECT_LABEL_PRESENCE",
+      "object_instances": 2233,
+      "image_files": 2233,
+      "pixel_groups": 2232,
+      "task_member_files": 393,
+      "expert_definition": null,
+      "definition_status": "ROLE_AND_REGION_PENDING_CONFIRMATION"
+    },
+    {
+      "label_id": "P_GOOD_TOKEN",
+      "raw_label": "good",
+      "count_basis": "POPULATION_CLAIM_NOT_XML_LABEL",
+      "object_instances": null,
+      "image_files": 19073,
+      "pixel_groups": 19070,
+      "task_member_files": 6,
+      "expert_definition": null,
+      "definition_status": "RESEARCHER_STATEMENT_NOT_EXPERT_IMAGE_CERTIFICATION"
+    }
+  ],
+  "question_scope_counts": [
+    {
+      "id": "Q01",
+      "affected_image_files": 32932,
+      "affected_pixel_groups": 32676,
+      "linked_base_tasks": 1884
+    },
+    {
+      "id": "Q02",
+      "affected_image_files": 19073,
+      "affected_pixel_groups": 19070,
+      "linked_base_tasks": 3
+    },
+    {
+      "id": "Q03",
+      "affected_image_files": 2233,
+      "affected_pixel_groups": 2232,
+      "linked_base_tasks": 392
+    },
+    {
+      "id": "Q04",
+      "affected_image_files": 3929,
+      "affected_pixel_groups": 3853,
+      "linked_base_tasks": 864
+    },
+    {
+      "id": "Q05",
+      "affected_image_files": 3027,
+      "affected_pixel_groups": 2986,
+      "linked_base_tasks": 217
+    },
+    {
+      "id": "Q06",
+      "affected_image_files": 3343,
+      "affected_pixel_groups": 3270,
+      "linked_base_tasks": 253
+    },
+    {
+      "id": "Q07",
+      "affected_image_files": 1899,
+      "affected_pixel_groups": 1868,
+      "linked_base_tasks": 150
+    },
+    {
+      "id": "Q08",
+      "affected_image_files": 13859,
+      "affected_pixel_groups": 13606,
+      "linked_base_tasks": 1881
+    },
+    {
+      "id": "Q09",
+      "affected_image_files": 486,
+      "affected_pixel_groups": 486,
+      "linked_base_tasks": 486
+    },
+    {
+      "id": "Q10",
+      "affected_image_files": 622,
+      "affected_pixel_groups": 622,
+      "linked_base_tasks": 0
+    },
+    {
+      "id": "Q11",
+      "affected_image_files": 13859,
+      "affected_pixel_groups": 13606,
+      "linked_base_tasks": 1881
+    },
+    {
+      "id": "Q12",
+      "affected_image_files": 3,
+      "affected_pixel_groups": 3,
+      "linked_base_tasks": 3
+    },
+    {
+      "id": "Q13",
+      "affected_image_files": 50,
+      "affected_pixel_groups": 25,
+      "linked_base_tasks": 25
+    },
+    {
+      "id": "Q14",
+      "affected_image_files": 505,
+      "affected_pixel_groups": 252,
+      "linked_base_tasks": 252
+    },
+    {
+      "id": "Q15",
+      "affected_image_files": 1199,
+      "affected_pixel_groups": 1177,
+      "linked_base_tasks": 1177
+    },
+    {
+      "id": "Q16",
+      "affected_image_files": 511,
+      "affected_pixel_groups": 255,
+      "linked_base_tasks": 255
+    },
+    {
+      "id": "Q17",
+      "affected_image_files": 32932,
+      "affected_pixel_groups": 32676,
+      "linked_base_tasks": 1884
+    },
+    {
+      "id": "Q18",
+      "affected_image_files": 32932,
+      "affected_pixel_groups": 32676,
+      "linked_base_tasks": 1884
+    },
+    {
+      "id": "Q19",
+      "affected_image_files": 32932,
+      "affected_pixel_groups": 32676,
+      "linked_base_tasks": 1884
+    },
+    {
+      "id": "Q20",
+      "affected_image_files": 32932,
+      "affected_pixel_groups": 32676,
+      "linked_base_tasks": 1884
+    }
+  ],
+  "count_interpretation": "Presence in original XML or population claim; not expert truth or independent welds; question scopes overlap",
+  "verification": {
+    "status": "PASS",
+    "source_image_byte_hashes_verified": 32932,
+    "source_xml_byte_hashes_verified": 13859,
+    "xml_objects_recounted_from_raw_minidom": 31898,
+    "prior_task_package_files_verified_unchanged": 1909
+  }
+}
